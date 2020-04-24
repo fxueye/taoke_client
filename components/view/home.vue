@@ -120,13 +120,13 @@
 			<view class="margin-bottom-sm app-tab-list-title">
 				<view class="flex flex-wrap">
 					<view class="basis-sm text-right">
-						<image class="img-aau" src="/static/img/aau.png" lazy-load mode="widthFix" />
+						<image class="img-aau" src="/static/app/img/aau.png" lazy-load mode="widthFix" />
 					</view>
 					<view class="basis-xs text-center">
 						<text class="text-black text-xl text-bold">为您推荐</text>
 					</view>
 					<view class="basis-sm text-left">
-						<image class="img-aau" src="/static/img/aau.png" lazy-load mode="widthFix" />
+						<image class="img-aau" src="/static/app/img/aau.png" lazy-load mode="widthFix" />
 					</view>
 				</view>
 			</view>

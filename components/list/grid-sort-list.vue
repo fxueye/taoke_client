@@ -11,7 +11,7 @@
 			</block>
 			<view class="cu-item" @tap="moreTap()">
 				<view class="grid-icon">
-					<image src="/static/img/more.png" mode="widthFix"/>
+					<image src="/static/app/img/more.png" mode="widthFix"/>
 				</view>
 				<text>更多</text>
 			</view>

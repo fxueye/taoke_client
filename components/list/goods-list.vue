@@ -40,7 +40,7 @@
 											<view class="basis-xl text-cut line-height">
 												<text class="text-sm margin-left-xs">{{item.username}}</text>
 											</view>
-											<image class="v-icon" src="/static/img/v.png" lazy-load mode="widthFix" v-if="item.v"/>
+											<image class="v-icon" src="/static/app/img/v.png" lazy-load mode="widthFix" v-if="item.v"/>
 										</view>
 									</view>
 									<view class="flex-sub text-right text-time">
@@ -54,13 +54,13 @@
 					<view class="bg-white margin-bottom-sm list-radius padding-sm recommend-list-box" v-if="item.type=='recommend'">
 						<view class="flex flex-wrap">
 							<view class="basis-xs text-right">
-								<image class="img-aat" src="/static/img/aat.png" lazy-load mode="widthFix"/>
+								<image class="img-aat" src="/static/app/img/aat.png" lazy-load mode="widthFix"/>
 							</view>
 							<view class="basis-lg text-center">
 								<text class="text-black text-bold">您可能感兴趣</text>
 							</view>
 							<view class="basis-xs text-left">
-								<image class="img-aat" src="/static/img/aat.png" lazy-load mode="widthFix"/>
+								<image class="img-aat" src="/static/app/img/aat.png" lazy-load mode="widthFix"/>
 							</view>
 						</view>
 						<view class="grid col-2 text-center margin-top-sm">
@@ -113,7 +113,7 @@
 											<view class="basis-xl text-cut line-height">
 												<text class="text-sm margin-left-xs">{{item.username}}</text>
 											</view>
-											<image class="v-icon" src="/static/img/v.png" lazy-load mode="widthFix" v-if="item.v"/>
+											<image class="v-icon" src="/static/app/img/v.png" lazy-load mode="widthFix" v-if="item.v"/>
 										</view>
 									</view>
 									<view class="flex-sub text-right text-time">
@@ -126,13 +126,13 @@
 					<view class="bg-white margin-bottom-sm list-radius padding-sm recommend-list-box" v-if="item.type=='recommend'">
 						<view class="flex flex-wrap">
 							<view class="basis-xs text-right">
-								<image class="img-aat" src="/static/img/aat.png" lazy-load mode="widthFix"/>
+								<image class="img-aat" src="/static/app/img/aat.png" lazy-load mode="widthFix"/>
 							</view>
 							<view class="basis-lg text-center">
 								<text class="text-black text-bold">您可能感兴趣</text>
 							</view>
 							<view class="basis-xs text-left">
-								<image class="img-aat" src="/static/img/aat.png" lazy-load mode="widthFix"/>
+								<image class="img-aat" src="/static/app/img/aat.png" lazy-load mode="widthFix"/>
 							</view>
 						</view>
 						<view class="grid col-2 text-center margin-top-sm">
