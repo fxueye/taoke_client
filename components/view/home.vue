@@ -19,7 +19,7 @@
 					<text class="cuIcon-search" />
 					<text>口罩</text>
 				</view>
-				<view class="action text-white">领现金</view>
+				<view class="action text-white">搜索</view>
 			</view>
 
 			<!--选项卡-->
@@ -141,9 +141,9 @@
 		<!--弹出框-->
 		<modal-img :show="modalShow" src="/static/images/home/sundry/reward.png" @imgTap="imgTap" @closeTap="closeTap" />
 
-		<!--打赏-->
-		<view class="app-add-btn-view-box" @tap="rewardTap">
-			<button class="cu-btn cuIcon-likefill bg-red"></button>
+		<!--悬浮按钮-->
+		<view class="app-add-btn-view-box" @tap="toTopTap">
+			<button class="cu-btn cuIcon-top bg-red"></button>
 		</view>
 
 	</view>
@@ -279,7 +279,7 @@
 			//次级虚拟数据加载
 			this.liveData = _home_data.liveData();
 			this.videoData = _home_data.videoData();
-			this.gridSortData = _home_data.gridSortData();
+			
 
 			// console.log(this.cate);
 		},
@@ -314,6 +314,8 @@
 			//搜索框下的tab菜单被点击
 			tabSelect(e) {
 				let index = e.currentTarget.dataset.id;
+				console.log(index);
+				console.log(this.cate);
 				this.headTab.tabCur = index;
 				this.headTab.scrollLeft = (index - 1) * 60;
 				if (index == 0) {
@@ -323,6 +325,7 @@
 					this.swiperInfo.show = false;
 					this.headInfo.opacity = 1;
 				}
+				this.gridSortData = this.cate[index].sub_cate;
 				uni.pageScrollTo({
 					scrollTop: 0,
 					duration: 0
@@ -390,15 +393,17 @@
 			gridSortTap(e) {
 				console.log(e);
 			},
-			rewardTap() {
-				uni.navigateTo({
-					url: "/pages/goods/reward"
+			toTopTap() {
+				uni.pageScrollTo({
+					scrollTop: 0,
+					duration: 200
 				});
+				
 			},
 			imgTap() {
 				this.modalShow = false;
 				uni.navigateTo({
-					url: "/pages/goods/reward"
+					// url: "/pages/goods/reward"
 				});
 				console.log('图片被点击');
 			},

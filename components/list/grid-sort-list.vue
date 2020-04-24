@@ -1,10 +1,10 @@
 <template>
 	<view class="app-grid-sort-view">
 		<view class="bg-white cu-list grid col-5 no-border">
-			<block v-for="(item,index) in list_data" :key="index" v-if="index < 10">
+			<block v-for="(item,index) in list_data" :key="index" v-if="index < 9">
 				<view class="cu-item" @tap="listTap(item,index)">
 					<view class="grid-icon">
-						<image :src="item.img" mode="widthFix"/>
+						<image :src="item.icon" mode="widthFix"/>
 					</view>
 					<text>{{item.name}}</text>
 				</view>

@@ -9,10 +9,10 @@
 				<view :class="TabID == 1?'cuIcon-discoverfill':'cuIcon-discover'"></view>
 				<text>发现</text>
 			</view>
-			<view class="action add-action" @tap="tabTap(2)">
+<!-- 			<view class="action add-action" @tap="tabTap(2)">
 				<button class="cu-btn cuIcon-add bg-red shadow"></button>
-				<text>卖二手</text>
-			</view>
+				<text>分类</text>
+			</view> -->
 			<view class="action" :class="TabID == 3?'text-red':'text-black'" @tap="tabTap(3)">
 				<view :class="TabID == 3?'cuIcon-messagefill':'cuIcon-message'">
 					<view class="cu-tag badge" v-if="MsgDot"></view>
@@ -32,12 +32,13 @@
 		name: 'footer-tabbar',
 		data() {
 			return {
-				TabID: 0, MsgDot: false,
+				TabID: 0,
+				MsgDot: false,
 			};
 		},
 		props: {
 			tabID: {
-				type: [String,Number],
+				type: [String, Number],
 				default: 0
 			},
 			msgDot: {
@@ -51,7 +52,7 @@
 		},
 		watch: {
 			tabID() {
-				if(this.tabID != 2) {
+				if (this.tabID != 2) {
 					this.TabID = this.tabID;
 				}
 			},
@@ -61,7 +62,7 @@
 		},
 		methods: {
 			tabTap(index) {
-				if(index != this.TabID) {
+				if (index != this.TabID) {
 					this.$emit('tabTap', index);
 				}
 			}
@@ -70,5 +71,5 @@
 </script>
 
 <style>
-	
+
 </style>
