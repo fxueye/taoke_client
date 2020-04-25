@@ -42,14 +42,14 @@ page {
 	}
 }
 
-.VerticalNav.nav {
+.vertical-nav.nav {
 	width: 200upx;
 	color: #666666;
 	height: calc(100vh - (var(--status-bar-height) + 101rpx));
 	white-space: initial;
 }
 
-.VerticalNav.nav .cu-item {
+.vertical-nav.nav .cu-item {
 	width: 100%;
 	text-align: center;
 	background-color: #FAFAFA;
@@ -59,11 +59,11 @@ page {
 	position: relative;
 }
 
-.VerticalNav.nav .cu-item.cur {
+.vertical-nav.nav .cu-item.cur {
 	background-color: #FFFFFF;
 }
 
-.VerticalNav.nav .cu-item.cur::after {
+.vertical-nav.nav .cu-item.cur::after {
 	content: "";
 	width: 7.27rpx;
 	height: 32.72rpx;
@@ -76,11 +76,11 @@ page {
 	margin: auto;
 }
 
-.VerticalBox {
+.vertical-box {
 	display: flex;
 }
 
-.VerticalMain {
+.vertical-main {
 	background-color: #FFFFFF;
 	height: calc(100vh - (var(--status-bar-height) + 101rpx));
 	flex: 1;

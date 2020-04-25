@@ -19,7 +19,9 @@
 					<text class="cuIcon-search" />
 					<text>口罩</text>
 				</view>
-				<view class="action text-white">搜索</view>
+				<view class="action text-white">
+					<text class="cuIcon-message" @tap="messageTap" />
+				</view>
 			</view>
 
 			<!--选项卡-->
@@ -279,7 +281,7 @@
 			//次级虚拟数据加载
 			this.liveData = _home_data.liveData();
 			this.videoData = _home_data.videoData();
-			
+
 
 			// console.log(this.cate);
 		},
@@ -398,7 +400,7 @@
 					scrollTop: 0,
 					duration: 200
 				});
-				
+
 			},
 			imgTap() {
 				this.modalShow = false;
@@ -410,6 +412,9 @@
 			closeTap() {
 				this.modalShow = false;
 				console.log('点击了关闭');
+			},
+			messageTap() {
+				this.$emit('messageTap', 3);
 			},
 			cateVueTap() {
 				uni.navigateTo({

@@ -1,5 +1,5 @@
 <template>
-	<view class="app-sell-box" :class="show?'show':''">
+	<view class="app-cate-box" :class="show?'show':''">
 		
 		<view class="app-bar-view-box">
 			<!--小程序端的标题-->
@@ -9,11 +9,12 @@
 			
 			<!--标题栏-->
 			<view class="text-gray app-bar-box">
-				<text class="text-black text-lg">发布闲置</text>
-				<text class="margin-left-sm">平台帮你卖 极速成交</text>
+				<text class="text-black text-lg">9.9包邮</text>
+				
 				<text class="cuIcon-close text-right close" @tap="closeTap"></text>
 			</view>
 		</view>
+		
 		
 		<!--占位的-->
 		<view class="app-seat-height"></view>
@@ -32,7 +33,7 @@
 	import utils from '@/common/utils.js';	//工具函数
 	
 	export default {
-		name: 'sell',
+		name: 'nine',
 		components: { 
 			typeList
 		},
@@ -57,12 +58,11 @@
 		},
 		watch: {
 			scrollY() {
-				//通知他妈的滚动了。
+
 				this.setPageScroll(this.scrollY);
 			},
 			scrollBottom() {
 				if(this.scrollBottom != 0) {
-					//通知他妈的触底了
 					this.setReachBottom();
 				}
 			},
@@ -98,7 +98,7 @@
 </script>
 
 <style lang="scss" scoped>
-	.app-sell-box {
+	.app-cate-box {
 		background: #FAFAFA;
 		position: relative;
 		min-height: 100vh;
@@ -151,7 +151,7 @@
 			padding: 0 27.27rpx 27.27rpx;
 		}
 	}
-	.app-sell-box.show {
+	.app-cate-box.show {
 		display: block;
 	}
 </style>

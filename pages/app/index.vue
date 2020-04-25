@@ -1,13 +1,13 @@
 <template>
 	<view>
 		<!--首页-->
-		<home :scrollY="scrollY" :scrollBottom="scrollBottom" :show="tabID==0?true:false" v-if="loadOn.home" />
+		<home :scrollY="scrollY" :scrollBottom="scrollBottom" @messageTap="messageTap" :show="tabID==0?true:false" v-if="loadOn.home" />
+
+		<nine :scrollY="scrollY" :scrollBottom="scrollBottom" :show="tabID==1?true:false" v-if="loadOn.nine" @closeTap="nineCloseTap" />
 
 		<!--发现-->
-		<find :scrollY="scrollY" :scrollBottom="scrollBottom" :show="tabID==1?true:false" v-if="loadOn.find" />
+		<find :scrollY="scrollY" :scrollBottom="scrollBottom" :show="tabID==2?true:false" v-if="loadOn.find" />
 
-		<!--卖二手-->
-		<sell :scrollY="scrollY" :scrollBottom="scrollBottom" :show="tabID==2?true:false" v-if="loadOn.sell" @closeTap="sellCloseTap" />
 
 		<!--消息-->
 		<news :scrollY="scrollY" :scrollBottom="scrollBottom" :show="tabID==3?true:false" v-if="loadOn.news" />
@@ -24,7 +24,7 @@
 	//加载组件
 	import home from '@/components/view/home';
 	import find from '@/components/view/find';
-	import sell from '@/components/view/sell';
+	import nine from '@/components/view/nine';
 	import news from '@/components/view/news';
 	import my from '@/components/view/my';
 
@@ -37,7 +37,7 @@
 		components: {
 			home,
 			find,
-			sell,
+			nine,
 			news,
 			my,
 			footerTabbar,
@@ -50,7 +50,7 @@
 				loadOn: {
 					home: true,
 					find: false,
-					sell: false,
+					nine: false,
 					news: false,
 					my: false
 				},
@@ -70,13 +70,16 @@
 			async getData() {
 				await this.$store.dispatch('app/get_cate');
 			},
+			messageTap(index) {
+				this.tabTap(index);
+			},
 			tabTap(index) {
 				this.tabIndex = this.tabID;
-				if (index == 1 && !this.loadOn.find) {
-					this.loadOn.find = true;
+				if (index == 1 && !this.loadOn.nine) {
+					this.loadOn.nine = true;
 				}
-				if (index == 2 && !this.loadOn.sell) {
-					this.loadOn.sell = true;
+				if (index == 2 && !this.loadOn.find) {
+					this.loadOn.find = true;
 				}
 				if (index == 3 && !this.loadOn.news) {
 					this.loadOn.news = true;
@@ -100,7 +103,7 @@
 					duration: 0
 				});
 			},
-			sellCloseTap() {
+			nineCloseTap() {
 				this.tabTap(this.tabIndex);
 			},
 		},

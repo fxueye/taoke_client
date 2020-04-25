@@ -49,12 +49,13 @@ const app = {
 		cate: (state, getters, rootState) => {
 			let temp = state.cate.slice()
 			temp.unshift({
-				id: 0,
+				id: '0',
 				name: "精选",
 				sub_cate: []
 			})
 			return temp;
-		},
+		}
+		
 
 	}
 }
