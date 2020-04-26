@@ -13,5 +13,5 @@ export function getCategory() {
 }
 
 export function getGoods(params) {
-	return http.get('/api/goods', params)
+	return http.post('/api/goods', params)
 }

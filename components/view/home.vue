@@ -93,7 +93,7 @@
 
 			<view class="app-tab-list">
 				<!--商品列表-->
-				<goods-list :list_data="goodsData" @listTap="goodsListTap" :show="goodsTabData.tabCur!=2 && goodsTabData.tabCur!=4?true:false" />
+				<goods-list :list_data="goods.items" @listTap="goodsListTap" :show="goodsTabData.tabCur!=2 && goodsTabData.tabCur!=4?true:false" />
 
 				<!--直播列表-->
 				<live-list :list_data="liveData" @listTap="liveListTap" :show="goodsTabData.tabCur==2?true:false" />
@@ -177,7 +177,8 @@
 		name: 'home',
 		computed: {
 			...mapGetters('app', {
-				cate: 'cate'
+				cate: 'cate',
+				goods:'goods'
 			})
 		},
 		components: {
@@ -383,7 +384,7 @@
 						url: '/pages/goods/second_terrace'
 					});
 				} else {
-
+				
 				}
 			},
 			liveListTap(e) {
@@ -394,6 +395,11 @@
 			},
 			gridSortTap(e) {
 				console.log(e);
+				if(e.data.type == "more"){
+					uni.navigateTo({
+						url: '/pages/home/cate'
+					});
+				}
 			},
 			toTopTap() {
 				uni.pageScrollTo({

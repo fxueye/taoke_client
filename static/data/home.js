@@ -2,11 +2,10 @@
 
 let _home_data = {
 	tab() {
-		return ['首页','服装鞋帽','交通工具','家电','家居家具','珠宝配饰','美妆个护','运动户外','母婴用品','玩具乐器','手机','数码','电脑办公'];
+		return ['首页', '服装鞋帽', '交通工具', '家电', '家居家具', '珠宝配饰', '美妆个护', '运动户外', '母婴用品', '玩具乐器', '手机', '数码', '电脑办公'];
 	},
 	swiper() {
-		return [
-			{
+		return [{
 				swiper: '/static/images/home/swiper/swiper-1.png',
 				background: '/static/images/home/swiper/swiper-background-1.png',
 			},
@@ -27,85 +26,85 @@ let _home_data = {
 			color: 'orange',
 			badge: '必看',
 			img: '/static/images/home/grid-icon/1.png',
-		},{
+		}, {
 			id: 2,
 			name: '平板',
 			color: '',
 			badge: '',
 			img: '/static/images/home/grid-icon/2.png',
-		},{
+		}, {
 			id: 3,
 			name: '电脑',
 			color: 'orange',
 			badge: '热卖',
 			img: '/static/images/home/grid-icon/3.png',
-		},{
+		}, {
 			id: 4,
 			name: '数码',
 			color: '',
 			badge: '',
 			img: '/static/images/home/grid-icon/4.png',
-		},{
+		}, {
 			id: 5,
 			name: '家电',
 			color: '',
 			badge: '',
 			img: '/static/images/home/grid-icon/5.png',
-		},{
+		}, {
 			id: 6,
 			name: '新人红包',
 			color: '',
 			badge: '',
 			img: '/static/images/home/grid-icon/6.png',
-		},{
+		}, {
 			id: 7,
 			name: '手机直播',
 			color: '',
 			badge: '',
 			img: '/static/images/home/grid-icon/7.png',
-		},{
+		}, {
 			id: 8,
 			name: '自营图书',
 			color: 'red',
 			badge: '必看',
 			img: '/static/images/home/grid-icon/8.png',
-		},{
+		}, {
 			id: 9,
 			name: '游戏',
 			color: '',
 			badge: '',
 			img: '/static/images/home/grid-icon/9.png',
-		},{
+		}, {
 			id: 10,
 			name: '二手车',
 			color: '',
 			badge: '',
 			img: '/static/images/home/grid-icon/10.png',
-		},{
+		}, {
 			id: 11,
 			name: '文玩玉翠',
 			color: '',
 			badge: '',
 			img: '/static/images/home/grid-icon/11.png',
-		},{
+		}, {
 			id: 12,
 			name: '免费领',
 			color: '',
 			badge: '',
 			img: '/static/images/home/grid-icon/12.png',
-		},{
+		}, {
 			id: 13,
 			name: '借钱',
 			color: '',
 			badge: '',
 			img: '/static/images/home/grid-icon/13.png',
-		},{
+		}, {
 			id: 14,
 			name: '拍卖',
 			color: '',
 			badge: '',
 			img: '/static/images/home/grid-icon/14.png',
-		},{
+		}, {
 			id: 15,
 			name: '分期商城',
 			color: '',
@@ -114,8 +113,7 @@ let _home_data = {
 		}];
 	},
 	live() {
-		return [
-			{
+		return [{
 				id: 1,
 				name: '图文鉴别',
 				text: '验过的更放心',
@@ -136,8 +134,7 @@ let _home_data = {
 		];
 	},
 	earn() {
-		return [
-			{
+		return [{
 				text: 'xxx赚了560元',
 				img: '/static/images/avatar/1.jpg',
 			},
@@ -160,8 +157,7 @@ let _home_data = {
 		];
 	},
 	sellQuickly() {
-		return [
-			{
+		return [{
 				id: 1,
 				title: '手机保卖',
 				text: '99%卖出',
@@ -182,8 +178,7 @@ let _home_data = {
 		];
 	},
 	activity() {
-		return [
-			{
+		return [{
 				id: 1,
 				title: '转转社区',
 				text: '发现有趣',
@@ -222,8 +217,7 @@ let _home_data = {
 		];
 	},
 	goodsTab() {
-		return [
-			{
+		return [{
 				title: '看推荐',
 				tag: '',
 			},
@@ -234,23 +228,22 @@ let _home_data = {
 			{
 				title: '直播',
 				tag: '秒杀中',
-			},{
+			}, {
 				title: '实惠好货',
 				tag: '',
-			},{
+			}, {
 				title: '短视频',
 				tag: '',
 			}
 		];
 	},
 	goodsList() {
-		return [
-			{
+		return [{
 				v: false,
 				pay: true,
-				type: '',	//空为正常数据，recommend 为推荐感兴趣的，可以此扩展。
+				type: '', //空为正常数据，recommend 为推荐感兴趣的，可以此扩展。
 				mold: [],
-				service: ['支持验机','专业质检'],
+				service: ['支持验机', '专业质检'],
 				price: '2280',
 				servicePlus: '',
 				username: '仔仔',
@@ -263,7 +256,10 @@ let _home_data = {
 				v: true,
 				pay: false,
 				type: '',
-				mold: [{bg:'red',title: '自营'}],
+				mold: [{
+					bg: 'red',
+					title: '自营'
+				}],
 				service: [],
 				price: '5049',
 				servicePlus: '支持验机',
@@ -277,7 +273,10 @@ let _home_data = {
 				v: false,
 				pay: false,
 				type: '',
-				mold: [{bg:'blue',title: '寄卖'}],
+				mold: [{
+					bg: 'blue',
+					title: '寄卖'
+				}],
 				service: [],
 				price: '2980',
 				servicePlus: '已验机',
@@ -292,7 +291,7 @@ let _home_data = {
 				pay: true,
 				type: '',
 				mold: [],
-				service: ['支持验机','专业质检'],
+				service: ['支持验机', '专业质检'],
 				price: '2280',
 				servicePlus: '',
 				username: '仔仔',
@@ -305,7 +304,10 @@ let _home_data = {
 				v: true,
 				pay: false,
 				type: '',
-				mold: [{bg:'red',title: '自营'}],
+				mold: [{
+					bg: 'red',
+					title: '自营'
+				}],
 				service: [],
 				price: '5049',
 				servicePlus: '支持验机',
@@ -334,7 +336,7 @@ let _home_data = {
 				pay: true,
 				type: '',
 				mold: [],
-				service: ['支持验机','专业质检'],
+				service: ['支持验机', '专业质检'],
 				price: '2280',
 				servicePlus: '',
 				username: '仔仔',
@@ -347,7 +349,10 @@ let _home_data = {
 				v: true,
 				pay: false,
 				type: '',
-				mold: [{bg:'red',title: '自营'}],
+				mold: [{
+					bg: 'red',
+					title: '自营'
+				}],
 				service: [],
 				price: '5049',
 				servicePlus: '支持验机',
@@ -376,7 +381,7 @@ let _home_data = {
 				pay: true,
 				type: '',
 				mold: [],
-				service: ['支持验机','专业质检'],
+				service: ['支持验机', '专业质检'],
 				price: '2280',
 				servicePlus: '',
 				username: '仔仔',
@@ -389,7 +394,10 @@ let _home_data = {
 				v: true,
 				pay: false,
 				type: '',
-				mold: [{bg:'red',title: '自营'}],
+				mold: [{
+					bg: 'red',
+					title: '自营'
+				}],
 				service: [],
 				price: '5049',
 				servicePlus: '支持验机',
@@ -418,7 +426,7 @@ let _home_data = {
 				pay: true,
 				type: '',
 				mold: [],
-				service: ['支持验机','专业质检'],
+				service: ['支持验机', '专业质检'],
 				price: '2280',
 				servicePlus: '',
 				username: '仔仔',
@@ -431,7 +439,10 @@ let _home_data = {
 				v: true,
 				pay: false,
 				type: '',
-				mold: [{bg:'red',title: '自营'}],
+				mold: [{
+					bg: 'red',
+					title: '自营'
+				}],
 				service: [],
 				price: '5049',
 				servicePlus: '支持验机',
@@ -460,8 +471,7 @@ let _home_data = {
 	recommend() {
 		return {
 			type: 'recommend',
-			list: [
-				{
+			list: [{
 					title: '商品标题',
 					img: '/static/images/home/goods/16.png',
 				},
@@ -472,7 +482,7 @@ let _home_data = {
 				{
 					title: '商品标题',
 					img: '/static/images/home/goods/14.png',
-				},{
+				}, {
 					title: '商品标题',
 					img: '/static/images/home/goods/13.png',
 				}
@@ -483,8 +493,7 @@ let _home_data = {
 		//	tag、tag_title、tag_time 三个参数中，选一个即可。
 		//	tag_red、tag_red_bg 两个参数中，选一个即可。
 		//	多个填写的话，会显示错位，如有需要，可自行修改。
-		return [
-			{
+		return [{
 				tag: '630万人',
 				tag_title: [],
 				tag_time: '',
@@ -522,7 +531,7 @@ let _home_data = {
 			},
 			{
 				tag: '',
-				tag_title: ['鉴别中','演戏'],
+				tag_title: ['鉴别中', '演戏'],
 				tag_time: '',
 				tag_red: '',
 				tag_red_bg: '',
@@ -582,7 +591,7 @@ let _home_data = {
 			},
 			{
 				tag: '',
-				tag_title: ['鉴别中','演戏'],
+				tag_title: ['鉴别中', '演戏'],
 				tag_time: '',
 				tag_red: '',
 				tag_red_bg: '',
@@ -607,8 +616,7 @@ let _home_data = {
 		];
 	},
 	videoData() {
-		return [
-			{
+		return [{
 				title: '某某某的视频',
 				name: '某某某',
 				appreciate: '499',
@@ -685,35 +693,35 @@ let _home_data = {
 			id: 1,
 			name: '手机',
 			img: '/static/images/home/grid-icon/16.png',
-		},{
+		}, {
 			id: 2,
 			name: '平板',
 			img: '/static/images/home/grid-icon/17.png',
-		},{
+		}, {
 			id: 3,
 			name: '电脑',
 			img: '/static/images/home/grid-icon/18.png',
-		},{
+		}, {
 			id: 4,
 			name: '数码',
 			img: '/static/images/home/grid-icon/19.png',
-		},{
+		}, {
 			id: 5,
 			name: '家电',
 			img: '/static/images/home/grid-icon/20.png',
-		},{
+		}, {
 			id: 6,
 			name: '新人红包',
 			img: '/static/images/home/grid-icon/21.png',
-		},{
+		}, {
 			id: 7,
 			name: '手机直播',
 			img: '/static/images/home/grid-icon/22.png',
-		},{
+		}, {
 			id: 8,
 			name: '自营图书',
 			img: '/static/images/home/grid-icon/23.png',
-		},{
+		}, {
 			id: 9,
 			name: '游戏',
 			img: '/static/images/home/grid-icon/24.png',

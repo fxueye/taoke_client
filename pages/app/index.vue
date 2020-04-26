@@ -69,6 +69,7 @@
 		methods: {
 			async getData() {
 				await this.$store.dispatch('app/get_cate');
+				await this.$store.dispatch('app/get_goods',{page:1,size:100});
 			},
 			messageTap(index) {
 				this.tabTap(index);

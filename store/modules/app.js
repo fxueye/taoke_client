@@ -1,12 +1,17 @@
 import {
 	init,
-	getCategory
+	getCategory,
+	getGoods
 } from "@/common/api"
 const app = {
 	namespaced: true,
 	state: {
 		setting: {},
-		cate: []
+		cate: [],
+		goods: {
+			page: 1,
+			items: []
+		}
 	},
 	mutations: {
 		set_setting: (state, setting) => {
@@ -14,6 +19,12 @@ const app = {
 		},
 		set_cate: (state, cate) => {
 			state.cate = cate;
+		},
+		add_goods: (state, data) => {
+			console.log(data);
+			state.goods.page = data.page;
+			state.goods.items.push.apply(state.goods.items, data.goods);
+
 		}
 	},
 	actions: {
@@ -43,6 +54,20 @@ const app = {
 					reject(error)
 				})
 			})
+		},
+		get_goods({
+			commit
+		}, options) {
+			return new Promise((resolve, reject) => {
+				getGoods(options).then(res => {
+					const data = res.data;
+					commit('add_goods', data);
+
+					resolve();
+				}).catch(error => {
+					reject(error)
+				})
+			})
 		}
 	},
 	getters: {
@@ -54,8 +79,11 @@ const app = {
 				sub_cate: []
 			})
 			return temp;
+		},
+		goods: (state, getter, rootState) => {
+			return state.goods;
 		}
-		
+
 
 	}
 }
