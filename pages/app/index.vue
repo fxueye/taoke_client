@@ -70,6 +70,7 @@
 			async getData() {
 				await this.$store.dispatch('app/get_cate');
 				await this.$store.dispatch('app/get_goods',{page:1,size:100});
+				await this.$store.dispatch('app/get_banner');
 			},
 			messageTap(index) {
 				this.tabTap(index);

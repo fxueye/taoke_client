@@ -1,7 +1,8 @@
 import {
 	init,
 	getCategory,
-	getGoods
+	getGoods,
+	getBanner
 } from "@/common/api"
 const app = {
 	namespaced: true,
@@ -11,7 +12,8 @@ const app = {
 		goods: {
 			page: 1,
 			items: []
-		}
+		},
+		banner: []
 	},
 	mutations: {
 		set_setting: (state, setting) => {
@@ -25,6 +27,9 @@ const app = {
 			state.goods.page = data.page;
 			state.goods.items.push.apply(state.goods.items, data.goods);
 
+		},
+		set_banner: (state, banner) => {
+			state.banner = banner;
 		}
 	},
 	actions: {
@@ -68,6 +73,19 @@ const app = {
 					reject(error)
 				})
 			})
+		},
+		get_banner({
+			commit
+		}) {
+			return new Promise((resolve, reject) => {
+				getBanner().then(res => {
+					const data = res.data;
+					commit('set_banner',data.banner);
+					resolve();
+				}).catch(error => {
+					reject(error)
+				})
+			})
 		}
 	},
 	getters: {
@@ -82,8 +100,10 @@ const app = {
 		},
 		goods: (state, getter, rootState) => {
 			return state.goods;
+		},
+		banner: (state, getter, rootState) => {
+			return state.banner;
 		}
-
 
 	}
 }

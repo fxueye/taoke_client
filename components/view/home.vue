@@ -4,7 +4,7 @@
 		<welcome-tip content="欢迎回来!" :show="true" :c_s="3000" @closeFinish="welcomeClose" />
 
 		<!--轮播背景-->
-		<swiper-background :list_data="swiperInfo.list" :indexs="swiperInfo.index" :show="swiperInfo.show" :welcome="swiperInfo.welcome" />
+		<swiper-background :list_data="banner" :indexs="swiperInfo.index" :show="swiperInfo.show" :welcome="swiperInfo.welcome" />
 
 		<view class="app-head-search-box" :class="headInfo.Class" :style="[{backgroundColor:'rgba(229, 77, 66,'+ headInfo.opacity +')'}]">
 
@@ -51,9 +51,9 @@
 			<!--轮播图-->
 			<view class="app-swiper-box">
 				<swiper class="screen-swiper square-dot c" autoplay circular indicator-dots :current="swiperInfo.index" @change="swiperChange">
-					<swiper-item v-for="(item,index) in swiperInfo.list" :key="index">
+					<swiper-item v-for="(item,index) in banner" :key="index">
 						<view class="swiper-padding">
-							<image :src="item.swiper" mode="widthFix" />
+							<image :src="item.img" mode="widthFix" />
 						</view>
 					</swiper-item>
 				</swiper>
@@ -178,7 +178,8 @@
 		computed: {
 			...mapGetters('app', {
 				cate: 'cate',
-				goods:'goods'
+				goods:'goods',
+				banner:'banner'
 			})
 		},
 		components: {
@@ -259,6 +260,7 @@
 
 			this.headTab.list = _home_data.tab();
 			this.swiperInfo.list = _home_data.swiper();
+			
 			this.gridMenuData = _home_data.nav();
 			this.identifyData = _home_data.live();
 			this.quickly.swiper = _home_data.earn();
@@ -529,8 +531,8 @@
 		width: 100%;
 
 		.screen-swiper {
-			height: 230rpx;
-			min-height: 230rpx;
+			height: 272rpx;
+			min-height: 272rpx;
 
 			.swiper-padding {
 				padding: 0 25rpx;
