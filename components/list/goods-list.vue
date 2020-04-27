@@ -7,46 +7,65 @@
 						<view class="goods-img">
 							<image :src="item.main_pic" mode="widthFix" lazy-load />
 							<!-- <text class="cuIcon-videofill text-white pay-view" v-if="item.pay"/> -->
-							<view class="text-right service-view">
-								<text class="cu-tag bg-blue radius sm">正品</text>
+							<view class="text-right service-view" v-if="item.yunfeixian == '1'">
+								<text class="cu-tag bg-blue radius sm">运费险</text>
 							</view>
-							<view class="mold-view">
-								<text class="cu-tag radius sm bg-red">七天无理由</text>
+							<view class="mold-view" v-if="item.activity_type != '1'">
+								<text class="cu-tag radius sm bg-red" v-if="item.activity_type == '2'">淘抢购</text>
+								<text class="cu-tag radius sm bg-red" v-if="item.activity_type == '3'">聚划算</text>
 							</view>
 						</view>
 						<view class="padding-xs">
 							<view class="text-cut-2 text-black">{{item.dtitle}}</view>
 							<view class="margin-top-xs">
 								<view class="flex">
-									<view class="flex-sub">
-										<text class="text-price text-red text-xl text-left">{{item.actual_price}}</text>
+									<view class="flex-sub" v-if="item.coupon_price">
+										<text class="cu-tag text-white bg-red radius sm ">{{parseFloat(item.coupon_price)}}元券</text>
 									</view>
-									<view class="flex-sub text-right" v-if="item.shop_type">
-										<text class="cu-tag light bg-red radius sm ">{{item.shop_type=='0'?'淘宝':'天猫'}}</text>
+								</view>
+
+							</view>
+							<view class="margin-top-xs">
+								<view class="flex align-center">
+									<view class="basis-xs">
+										<text class="text-red text-xs">券后</text>
+									</view>
+									<view class="basis-sm">
+										<text class="text-price text-red text-xl text-left">{{item.actual_price}}</text>
 									</view>
 								</view>
 							</view>
-							<view class="margin-top-sm margin-bottom-xs text-gray user-info-box">
-								<view class="flex">
+							<view class="margin-top-xs">
+								<view class="flex align-center text-gray">
 									<view class="flex-sub">
+										<text class="text-xs margin-right-xs">{{item.shop_type=='0'?'淘宝':'天猫'}}</text>
+										<text class="text-price text-xs text-left">{{item.original_price}}</text>
+									</view>
+									<view class="flex-sub text-right">
+										<text class="text-xs ">已售{{item.month_sales | parseNum}}</text>
+									</view>
+								</view>
+							</view>
+							<view class="margin-top-sm margin-bottom-xs user-info-box">
+								<view class="flex">
+									<view class="basis-xl">
 										<view class="flex flex-wrap user-info">
 											<view class="basis-xs">
 												<image class="cu-avatar sm round img" :src="item.shop_logo" lazy-load mode="widthFix" />
 											</view>
 											<view class="basis-xl text-cut line-height">
-												<text class="text-sm margin-left-xs">{{item.shop_name}}</text>
+												<text class="text-sm">{{item.shop_name}}</text>
 											</view>
 											<!-- <image class="v-icon" src="/static/app/img/v.png" lazy-load mode="widthFix"  /> -->
 										</view>
 									</view>
-									<view class="flex-sub text-right text-time">
-										<text class="text-sm ">{{item.shop_type=='0'?'淘宝':'天猫'}}</text>
+									<view class="basis-xs text-right text-time">
+										<text class="text-sm text-red">{{item.shop_type=='0'?'淘宝':'天猫'}}</text>
 									</view>
 								</view>
 							</view>
 						</view>
 					</view>
-
 					<view class="bg-white margin-bottom-sm list-radius padding-sm recommend-list-box" v-if="item.type=='recommend'">
 						<view class="flex flex-wrap">
 							<view class="basis-xs text-right">
@@ -62,8 +81,8 @@
 						<view class="grid col-2 text-center margin-top-sm">
 							<block v-for="(items,indexs) in item.list" :key="indexs" v-if="item.list.length < 5">
 								<view class="padding-xs" @tap="listTap(items,indexs)">
-									<view class="img-goods" :style="[{backgroundImage:'url('+ items.img +')'}]" />
-									<view class="text-black text-sm margin-top-xs">{{items.title}}</view>
+									<view class="img-goods" :style="[{backgroundImage:'url('+ items.main_pic +')'}]" />
+									<view class="text-black text-sm margin-top-xs">{{items.dtitle}}</view>
 								</view>
 							</block>
 						</view>
@@ -76,40 +95,60 @@
 						<view class="goods-img">
 							<image :src="item.main_pic" mode="widthFix" lazy-load />
 							<!-- <text class="cuIcon-videofill text-white pay-view" v-if="item.pay"/> -->
-							<view class="text-right service-view">
-								<text class="cu-tag bg-blue radius sm">正品</text>
+							<view class="text-right service-view" v-if="item.yunfeixian == '1'">
+								<text class="cu-tag bg-blue radius sm">运费险</text>
 							</view>
-							<view class="mold-view">
-								<text class="cu-tag radius sm bg-red">七天无理由</text>
+							<view class="mold-view" v-if="item.activity_type != '1'">
+								<text class="cu-tag radius sm bg-red" v-if="item.activity_type == '2'">淘抢购</text>
+								<text class="cu-tag radius sm bg-red" v-if="item.activity_type == '3'">聚划算</text>
 							</view>
 						</view>
 						<view class="padding-xs">
 							<view class="text-cut-2 text-black">{{item.dtitle}}</view>
 							<view class="margin-top-xs">
 								<view class="flex">
-									<view class="flex-sub">
-										<text class="text-price text-red text-xl text-left">{{item.actual_price}}</text>
+									<view class="flex-sub" v-if="item.coupon_price">
+										<text class="cu-tag text-white bg-red radius sm ">{{parseFloat(item.coupon_price)}}元券</text>
 									</view>
-									<view class="flex-sub text-right" v-if="item.shop_type">
-										<text class="cu-tag light bg-red radius sm ">{{item.shop_type=='0'?'淘宝':'天猫'}}</text>
+								</view>
+
+							</view>
+							<view class="margin-top-xs">
+								<view class="flex align-center">
+									<view class="basis-xs">
+										<text class="text-red text-xs">券后</text>
+									</view>
+									<view class="basis-sm">
+										<text class="text-price text-red text-xl text-left">{{item.actual_price}}</text>
 									</view>
 								</view>
 							</view>
-							<view class="margin-top-sm margin-bottom-xs text-gray user-info-box">
-								<view class="flex">
+							<view class="margin-top-xs">
+								<view class="flex align-center text-gray">
 									<view class="flex-sub">
+										<text class="text-xs margin-right-xs">{{item.shop_type=='0'?'淘宝':'天猫'}}</text>
+										<text class="text-price text-xs text-left">{{item.original_price}}</text>
+									</view>
+									<view class="flex-sub text-right">
+										<text class="text-xs ">已售{{item.month_sales | parseNum}}</text>
+									</view>
+								</view>
+							</view>
+							<view class="margin-top-sm margin-bottom-xs user-info-box">
+								<view class="flex">
+									<view class="basis-xl">
 										<view class="flex flex-wrap user-info">
 											<view class="basis-xs">
 												<image class="cu-avatar sm round img" :src="item.shop_logo" lazy-load mode="widthFix" />
 											</view>
 											<view class="basis-xl text-cut line-height">
-												<text class="text-sm margin-left-xs">{{item.shop_name}}</text>
+												<text class="text-sm">{{item.shop_name}}</text>
 											</view>
 											<!-- <image class="v-icon" src="/static/app/img/v.png" lazy-load mode="widthFix"  /> -->
 										</view>
 									</view>
-									<view class="flex-sub text-right text-time">
-										<text class="text-sm ">{{item.shop_type=='0'?'淘宝':'天猫'}}</text>
+									<view class="basis-xs text-right text-time">
+										<text class="text-sm text-red">{{item.shop_type=='0'?'淘宝':'天猫'}}</text>
 									</view>
 								</view>
 							</view>
@@ -130,8 +169,8 @@
 						<view class="grid col-2 text-center margin-top-sm">
 							<block v-for="(items,indexs) in item.list" :key="indexs" v-if="item.list.length < 5">
 								<view class="padding-xs" @tap="listTap(items,indexs)">
-									<view class="img-goods" :style="[{backgroundImage:'url('+ items.img +')'}]" />
-									<view class="text-black text-sm margin-top-xs">{{items.title}}</view>
+									<view class="img-goods" :style="[{backgroundImage:'url('+ items.main_pic +')'}]" />
+									<view class="text-black text-sm margin-top-xs">{{items.dtitle}}</view>
 								</view>
 							</block>
 						</view>
@@ -156,6 +195,11 @@
 			show: {
 				type: Boolean,
 				default: true
+			}
+		},
+		filters: {
+			parseNum: function(value) {
+				return utils.paseNum(value);
 			}
 		},
 		methods: {
