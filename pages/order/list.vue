@@ -109,7 +109,7 @@
 </template>
 
 <script>
-	import barTitle from '@/components/basics/bar-title';
+	import barTitle from '@/components/base/bar-title';
 	
 	import _sort_grid from '@/static/data/order_list.js';	//虚拟数据
 	import utils from '@/common/utils.js';

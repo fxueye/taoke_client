@@ -104,7 +104,7 @@
 </template>
 
 <script>
-	import videoRender from '@/components/basics/video-render';
+	import videoRender from '@/components/base/video-render';
 	import utils from '@/common/utils.js';
 	export default {
 		name: 'trends-list',

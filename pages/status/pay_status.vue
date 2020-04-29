@@ -44,7 +44,7 @@
 <script>
 	//各种状态显示内容，可自行修改或判断法显示，这里我就不一一写出来了。
 	
-	import barTitle from '@/components/basics/bar-title';
+	import barTitle from '@/components/base/bar-title';
 	import utils from '@/common/utils.js';
 	export default {
 		components: {

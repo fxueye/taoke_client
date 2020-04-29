@@ -78,7 +78,7 @@
 </template>
 
 <script>
-	import barTitle from '@/components/basics/bar-title';
+	import barTitle from '@/components/base/bar-title';
 	
 	import _my_cart_data from '@/static/data/my_cart.js';	//虚拟数据
 	import utils from '@/common/utils.js';	//工具函数

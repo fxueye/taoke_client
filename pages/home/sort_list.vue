@@ -193,7 +193,7 @@
 </template>
 
 <script>
-	import barSearchTitle from '@/components/basics/bar-search-title';
+	import barSearchTitle from '@/components/base/bar-search-title';
 	import goodsSortList from '@/components/list/goods-sort-list';
 
 	import _sort_list_data from '@/static/data/sort_list.js';	//虚拟数据

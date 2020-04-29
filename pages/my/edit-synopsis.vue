@@ -27,7 +27,7 @@
 </template>
 
 <script>
-	import barTitle from '@/components/basics/bar-title';
+	import barTitle from '@/components/base/bar-title';
 	import utils from '@/common/utils.js';	//工具函数
 	export default {
 		components: {

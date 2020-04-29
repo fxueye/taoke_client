@@ -153,8 +153,8 @@
 
 <script>
 	//加载组件  
-	import welcomeTip from '@/components/basics/welcome-tip';
-	import swiperBackground from '@/components/basics/swiper-background';
+	import welcomeTip from '@/components/base/welcome-tip';
+	import swiperBackground from '@/components/base/swiper-background';
 	import gridMenuList from '@/components/list/grid-menu-list';
 	import identifyList from '@/components/list/identify-list';
 	import sellQuicklyList from '@/components/list/sell-quickly-list';
@@ -164,7 +164,7 @@
 	import videoList from '@/components/list/video-list';
 	import footerTabbar from '@/components/footer/footer-tabbar';
 	import gridSortList from '@/components/list/grid-sort-list';
-	import modalImg from '@/components/basics/modal-img';
+	import modalImg from '@/components/base/modal-img';
 
 	//======================================================================
 	import _home_data from '@/static/data/home.js'; //虚拟数据

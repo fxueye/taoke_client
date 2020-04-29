@@ -444,7 +444,7 @@
 </template>
 
 <script>
-	import barTitle from '@/components/basics/bar-title';
+	import barTitle from '@/components/base/bar-title';
 	
 	import _goods_data from '@/static/data/goods.js';	//虚拟数据
 	import utils from '@/common/utils.js';	//工具函数
