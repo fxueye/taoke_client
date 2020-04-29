@@ -46,14 +46,14 @@
 									</view>
 								</view>
 							</view>
-							<view class="margin-top-sm margin-bottom-xs user-info-box">
-								<view class="flex">
+							<view class="margin-top-sm margin-bottom-xs">
+								<view class="flex text-gray">
 									<view class="basis-xl">
-										<view class="flex flex-wrap user-info">
+										<view class="flex flex-wrap align-center">
 											<view class="basis-xs">
 												<image class="cu-avatar sm round img" :src="item.shop_logo" lazy-load mode="widthFix" />
 											</view>
-											<view class="basis-xl text-cut line-height">
+											<view class="basis-xl">
 												<text class="text-sm">{{item.shop_name}}</text>
 											</view>
 											<!-- <image class="v-icon" src="/static/app/img/v.png" lazy-load mode="widthFix"  /> -->
@@ -89,8 +89,9 @@
 					</view>
 				</block>
 			</view>
-			<view class="basis-df padding-sm padding-left-xs">
-				<block v-for="(item,index) in list_data" :key="index" v-if="index%2!=0">
+
+			<view class="basis-df padding-sm padding-left-xs ">
+				<block v-for="(item,index) in list_data" :key="index" v-if="index%2 !=0">
 					<view class="bg-white margin-bottom-sm list-radius" v-if="item.type=='0'" @tap="listTap(item,index)">
 						<view class="goods-img">
 							<image :src="item.main_pic" mode="widthFix" lazy-load />
@@ -134,14 +135,14 @@
 									</view>
 								</view>
 							</view>
-							<view class="margin-top-sm margin-bottom-xs user-info-box">
-								<view class="flex">
+							<view class="margin-top-sm margin-bottom-xs">
+								<view class="flex text-gray">
 									<view class="basis-xl">
-										<view class="flex flex-wrap user-info">
+										<view class="flex flex-wrap align-center">
 											<view class="basis-xs">
 												<image class="cu-avatar sm round img" :src="item.shop_logo" lazy-load mode="widthFix" />
 											</view>
-											<view class="basis-xl text-cut line-height">
+											<view class="basis-xl">
 												<text class="text-sm">{{item.shop_name}}</text>
 											</view>
 											<!-- <image class="v-icon" src="/static/app/img/v.png" lazy-load mode="widthFix"  /> -->
@@ -177,6 +178,8 @@
 					</view>
 				</block>
 			</view>
+
+
 		</view>
 	</view>
 </template>
