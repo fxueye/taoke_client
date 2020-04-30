@@ -458,11 +458,6 @@
 		}
 	}
 
-	.app-head-search-box.welcome {
-		top: calc(var(--status-bar-height) + 101rpx);
-		transition: top .25s;
-	}
-
 	.app-view-content {
 		display: none;
 		width: 100%;
@@ -485,21 +480,6 @@
 		}
 	}
 
-	.app-view-content.welcome {
-		/* #ifdef APP-PLUS */
-		margin-top: calc(var(--status-bar-height) + 180rpx);
-		/* #endif */
-
-		/* #ifdef H5 */
-		margin-top: calc(var(--status-bar-height) + 220rpx);
-		/* #endif */
-
-		/* #ifdef MP */
-		margin-top: calc(var(--status-bar-height) + 220rpx);
-		/* #endif */
-
-		transition: all .25s;
-	}
 
 	.app-view-content.show {
 		display: block;
