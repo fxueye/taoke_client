@@ -69,41 +69,6 @@
 			<!--活动区域-->
 			<activity-list :list_data='activity' @listTap='activityTap' />
 
-			<!--商品tab-->
-			<view class="app-goods-tab-box">
-				<scroll-view scroll-x class="nav z">
-					<view class="flex text-center">
-						<block v-for="(item,index) in sortData.list" :key="index">
-							<view class="cu-item flex-sub nf" :class="index==sortData.tabCur?'select':''" @tap="sortTab" :data-id="index">
-								<view :class="index == sortData.tabCur?'text-red':''">{{item.title}}</view>
-								<view class="tab-dot bg-red" />
-							</view>
-						</block>
-					</view>
-				</scroll-view>
-			</view>
-
-			<view class="app-tab-list">
-				<!--商品列表-->
-				<goods-list :list_data="goods.items" @listTap="goodsListTap" :show="sortData.tabCur!=2 && sortData.tabCur!=4?true:false" />
-
-			</view>
-
-			<!--占位底部距离-->
-			<view class="cu-tabbar-height" />
-		</view>
-
-		<!--中间内容区域-分类-->
-		<view class="app-view-content" :class="headTab.tabCur!=0?'show':''">
-
-			<!--宫格分类-->
-			<grid-sort-list :list_data="gridSortData" @listTap="gridSortTap" />
-
-			<!--广告-->
-
-			<view class="margin">
-				<image class="app-ad-img" src="/static/images/home/swiper/swiper-1.png" mode="widthFix" />
-			</view>
 
 			<!--标题-->
 			<view class="margin-bottom-sm app-tab-list-title">
@@ -120,15 +85,43 @@
 				</view>
 			</view>
 
-			<!--商品列表-->
-			<goods-list :list_data="goods.items" @listTap="goodsListTap" />
+			<view class="app-tab-list">
+				<!--商品列表-->
+				<goods-list :list_data="goods.items" :show="goodsShow" @listTap="goodsListTap" />
 
+			</view>
+			<load-more :status="loadMoreStatus"></load-more>
+			<!--占位底部距离-->
+			<view class="cu-tabbar-height" />
+		</view>
+
+		<!--中间内容区域-分类-->
+		<view class="app-view-content" :class="headTab.tabCur!=0?'show':''">
+			<!--宫格分类-->
+			<grid-sort-list :list_data="gridSortData" @listTap="gridSortTap" />
+
+			<!--商品tab-->
+			<view class="app-goods-tab-box">
+				<scroll-view scroll-x class="nav z">
+					<view class="flex text-center">
+						<block v-for="(item,index) in sortData.list" :key="index">
+							<view class="cu-item flex-sub nf" :class="index==sortData.tabCur?'select':''" @tap="sortTab" :data-id="index">
+								<view :class="index == sortData.tabCur?'text-red':''">{{item.title}}</view>
+							</view>
+						</block>
+					</view>
+				</scroll-view>
+			</view>
+
+			<!--商品列表-->
+			<goods-list :list_data="goods.items" :show="goodsShow" @listTap="goodsListTap" />
+			<load-more :status="loadMoreStatus"></load-more>
 			<!--占位底部距离-->
 			<view class="cu-tabbar-height" />
 		</view>
 
 		<!--弹出框-->
-		<modal-img :show="modalShow" src="/static/images/home/sundry/reward.png" @imgTap="imgTap" @closeTap="closeTap" />
+		<!-- <modal-img :show="modalShow" src="/static/images/home/sundry/reward.png" @imgTap="imgTap" @closeTap="closeTap" /> -->
 
 		<!--悬浮按钮-->
 		<view class="app-add-btn-view-box" @tap="toTopTap">
@@ -149,7 +142,10 @@
 
 	import footerTabbar from '@/components/footer/footer-tabbar';
 	import gridSortList from '@/components/list/grid-sort-list';
-	import modalImg from '@/components/base/modal-img';
+	// import modalImg from '@/components/base/modal-img';
+	import loadMore from '@/components/base/load-more';
+
+
 	import data from '@/common/data.js'
 
 	//======================================================================
@@ -176,11 +172,13 @@
 			goodsList,
 			footerTabbar,
 			gridSortList,
-			modalImg
+			// modalImg,
+			loadMore
 		},
 		data() {
 			return {
 				query: {
+					cid: 0,
 					page: 1,
 					size: 100
 				},
@@ -200,17 +198,14 @@
 				},
 
 				gridMenuData: [],
-				identifyData: [],
-				quickly: {},
+
 				activity: [],
 				sortData: {
 					tabCur: 0,
 					list: []
 				},
-				liveData: [],
-				videoData: [],
 				gridSortData: [],
-				modalShow: true,
+				loadMoreStatus: 'more',
 			}
 		},
 		props: {
@@ -266,11 +261,33 @@
 		},
 		methods: {
 			async getData() {
-				await this.$store.dispatch('app/get_goods', this.query);
+				this.loadMoreStatus = "loading";
+				if (this.query.page == 1) {
+					this.goodsShow = false;
+				}
+				let sort = this.sortData.list[this.sortData.tabCur];
+				let query = { ...this.query
+				}
+				query[sort.key] = sort.value;
+				this.$store.dispatch('app/get_goods', query).then(res => {
+					this.loadMoreStatus = "more";
+					this.goodsShow = true;
+				}).catch(err => {
+					this.loadMoreStatus = 'noMore';
+					this.goodsShow = true;
+				});
+				if (sort.key == "actual_price") {
+					if (sort.value == "DESC") {
+						sort.value = "ASC";
+					} else {
+						sort.value = "DESC";
+					}
+				}
+
 			},
 			//页面被滚动
 			setPageScroll(scrollTop) {
-				//console.log(scrollTop);
+				// console.log(scrollTop);
 				if (this.headTab.tabCur == 0) {
 					if (scrollTop <= 100) {
 						let num = scrollTop / 100;
@@ -282,14 +299,21 @@
 			},
 			//触底了
 			setReachBottom() {
-				console.log('触底了');
+
+				this.query.page = this.goods.page + 1;
+				this.getData();
+
 			},
 
 			//搜索框下的tab菜单被点击
 			tabSelect(e) {
 				let index = e.currentTarget.dataset.id;
-				console.log(index);
-				console.log(this.cate);
+				if (this.query.cid != this.cate[index].id) {
+					this.query.page = 1;
+					this.query.cid = this.cate[index].id;
+				}
+				this.getData();
+
 				this.headTab.tabCur = index;
 				this.headTab.scrollLeft = (index - 1) * 60;
 				if (index == 0) {
@@ -325,20 +349,25 @@
 			},
 			//商品列表上的分类tab被点击
 			sortTab(e) {
-				this.sortData.tabCur = e.currentTarget.dataset.id;
+				let index = e.currentTarget.dataset.id;
+				this.query.page = 1;
+				this.sortData.tabCur = index;
+
+
 				// #ifdef H5
 				uni.pageScrollTo({
-					scrollTop: 1060,
+					scrollTop: 233,
 					duration: 200
 				});
 				// #endif
 
 				// #ifdef APP-PLUS
 				uni.pageScrollTo({
-					scrollTop: 1010,
+					scrollTop: 233,
 					duration: 200
 				});
 				// #endif
+				this.getData();
 			},
 			goodsListTap(e) {
 				console.log(e);

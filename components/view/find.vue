@@ -34,12 +34,6 @@
 		<!--中间内容区域-->
 		<view class="app-view-content" v-if="TabCur == 0">
 			
-			<!--动态列表-->
-			<trends-list :list_data="followTrendsData" :viewBtn="true"
-			@userTap="trends_userTap" @followTap="trends_followTap" @contentTap="trends_contentTap"
-			@imgTap="trends_imgTap" @talkTap="trends_talkTap" @viewBtnTap="trends_viewBtnTap"
-			@commentTap="trends_commentTap" @appreciateTap="trends_appreciateTap"/>
-
 			<!--占位底部距离-->
 			<view class="cu-tabbar-height"/>
 		</view>
@@ -47,12 +41,7 @@
 		<!--中间内容区域-->
 		<view class="app-view-content" v-if="TabCur == 1">
 			
-			<!--动态列表1-->
-			<trends-list :list_data="trendsData" :isMax="2" 
-			@userTap="trends_userTap" @followTap="trends_followTap" @contentTap="trends_contentTap"
-			@imgTap="trends_imgTap" @talkTap="trends_talkTap" @forwardTap="trends_forwardTap"
-			@commentTap="trends_commentTap" @appreciateTap="trends_appreciateTap"/>
-			
+		
 			<!--热门话题,小程序上无效，待查原因-->
 			<!-- #ifndef MP -->
 			<hot-topic-list :list_data="hotTopicData" @listTap="hotTopicTap" @viewAllTap="viewAllTap"/>
@@ -61,13 +50,7 @@
 			<!--为你推荐-->
 			<recommend-scroll-list :list_data="recommendScrollData" @userTap="r_userTap"
 			@followTap="r_followTap" @viewAllTap="r_viewAllTap"/>
-			
-			<!--动态列表2-->
-			<trends-list :list_data="trendsData" :isMin="2" 
-			@userTap="trends_userTap" @followTap="trends_followTap" @contentTap="trends_contentTap"
-			@imgTap="trends_imgTap" @talkTap="trends_talkTap" @forwardTap="trends_forwardTap"
-			@commentTap="trends_commentTap" @appreciateTap="trends_appreciateTap"/>
-			
+		
 			<!--占位底部距离-->
 			<view class="cu-tabbar-height"/>
 		</view>
@@ -96,7 +79,7 @@
 </template>
 
 <script>
-	import trendsList from '@/components/list/trends-list';
+
 	import hotTopicList from '@/components/list/hot-topic-list';
 	import recommendScrollList from '@/components/list/recommend-scroll-list';
 	import topicGridList from '@/components/list/topic-grid-list';
@@ -109,7 +92,7 @@
 	export default {
 		name: 'find',
 		components: { 
-			trendsList, hotTopicList, recommendScrollList, topicGridList, topicCardList
+			 hotTopicList, recommendScrollList, topicGridList, topicCardList
 		},
 		data() {
 			return {

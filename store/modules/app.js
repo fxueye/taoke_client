@@ -25,12 +25,16 @@ const app = {
 		add_goods: (state, data) => {
 			console.log(data);
 			state.goods.page = data.page;
+			if(data.page == 1){
+				state.goods.items = [];
+			}
 			state.goods.items.push.apply(state.goods.items, data.goods);
 
 		},
 		set_banner: (state, banner) => {
 			state.banner = banner;
-		}
+		},
+
 	},
 	actions: {
 		init({
@@ -60,6 +64,7 @@ const app = {
 				})
 			})
 		},
+	
 		get_goods({
 			commit
 		}, options) {
@@ -67,7 +72,6 @@ const app = {
 				getGoods(options).then(res => {
 					const data = res.data;
 					commit('add_goods', data);
-
 					resolve();
 				}).catch(error => {
 					reject(error)
@@ -80,7 +84,7 @@ const app = {
 			return new Promise((resolve, reject) => {
 				getBanner().then(res => {
 					const data = res.data;
-					commit('set_banner',data.banner);
+					commit('set_banner', data.banner);
 					resolve();
 				}).catch(error => {
 					reject(error)

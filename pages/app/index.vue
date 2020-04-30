@@ -67,9 +67,9 @@
 			utils.setBarColor(true);
 		},
 		methods: {
-			async getData() {
-				await this.$store.dispatch('app/get_cate');
-				await this.$store.dispatch('app/get_banner');
+			getData() {
+				this.$store.dispatch('app/get_cate');
+				this.$store.dispatch('app/get_banner');
 			},
 			messageTap(index) {
 				this.tabTap(index);

@@ -22,7 +22,7 @@ let data = {
 		{
 			title: '价格',
 			key: 'actual_price',
-			value: 'DESC'
+			value: 'ASC'
 		}
 	]
 }
