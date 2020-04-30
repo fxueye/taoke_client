@@ -1,12 +1,10 @@
 <template>
 	<view class="app-home-box" :class="show?'show':''">
-		<!--欢迎-->
-		<welcome-tip content="欢迎回来!" :show="true" :c_s="3000" @closeFinish="welcomeClose" />
-
+		<view class="app-home-top"></view>
 		<!--轮播背景-->
-		<swiper-background :list_data="banner" :indexs="swiperInfo.index" :show="swiperInfo.show" :welcome="swiperInfo.welcome" />
+		<swiper-background :list_data="swiperInfo.list" :indexs="swiperInfo.index" :show="swiperInfo.show" :welcome="false" />
 
-		<view class="app-head-search-box" :class="headInfo.Class" :style="[{backgroundColor:'rgba(229, 77, 66,'+ headInfo.opacity +')'}]">
+		<view class="app-head-search-box" :style="[{backgroundColor:'rgba(229, 77, 66,'+ headInfo.opacity +')'}]">
 
 			<!--小程序端的标题-->
 			<!-- #ifdef MP -->
@@ -29,7 +27,7 @@
 				<view class="flex text-white">
 					<view class="basis-xxl">
 						<scroll-view scroll-x class="nav z" scroll-with-animation :scroll-left="headTab.scrollLeft">
-							<block v-for="(item,index) in cate" :key="index">
+							<block v-for="(item,index) in headTab.list" :key="index">
 								<view class="cu-item" :class="index==headTab.tabCur?'select':''" @tap="tabSelect" :data-id="index">
 									<view>{{item.name}}</view>
 									<view class="tab-dot bg-white" />
@@ -47,7 +45,7 @@
 		</view>
 
 		<!--中间内容区域-->
-		<view class="app-view-content" :class="[viewContent.welcome?'welcome':'',headTab.tabCur==0?'show':'']">
+		<view class="app-view-content" :class="[headTab.tabCur==0?'show':'']">
 			<!--轮播图-->
 			<view class="app-swiper-box">
 				<swiper class="screen-swiper square-dot c" autoplay circular indicator-dots :current="swiperInfo.index" @change="swiperChange">
@@ -67,23 +65,17 @@
 				<image class="red-envelopes" src="/static/images/home/sundry/2.png" mode="widthFix" />
 			</view>
 
-			<!--免费鉴别-->
-			<identify-list :list_data='identifyData' @listTap='identifyTap' />
-
-			<!--省心快卖-->
-			<sell-quickly-list :list_data='quickly' @listTap='quicklyTap' />
 
 			<!--活动区域-->
 			<activity-list :list_data='activity' @listTap='activityTap' />
 
 			<!--商品tab-->
 			<view class="app-goods-tab-box">
-				<scroll-view scroll-x class="nav z margin-tb-sm">
+				<scroll-view scroll-x class="nav z">
 					<view class="flex text-center">
-						<block v-for="(item,index) in goodsTabData.list" :key="index">
-							<view class="cu-item flex-sub nf" :class="index==goodsTabData.tabCur?'select':''" @tap="goodsTab" :data-id="index">
-								<view class="cu-tag badge z bg-gradual-pink" v-if="item.tag">{{item.tag}}</view>
-								<view :class="index == goodsTabData.tabCur?'text-red':''">{{item.title}}</view>
+						<block v-for="(item,index) in sortData.list" :key="index">
+							<view class="cu-item flex-sub nf" :class="index==sortData.tabCur?'select':''" @tap="sortTab" :data-id="index">
+								<view :class="index == sortData.tabCur?'text-red':''">{{item.title}}</view>
 								<view class="tab-dot bg-red" />
 							</view>
 						</block>
@@ -93,13 +85,8 @@
 
 			<view class="app-tab-list">
 				<!--商品列表-->
-				<goods-list :list_data="goods.items" @listTap="goodsListTap" :show="goodsTabData.tabCur!=2 && goodsTabData.tabCur!=4?true:false" />
+				<goods-list :list_data="goods.items" @listTap="goodsListTap" :show="sortData.tabCur!=2 && sortData.tabCur!=4?true:false" />
 
-				<!--直播列表-->
-				<live-list :list_data="liveData" @listTap="liveListTap" :show="goodsTabData.tabCur==2?true:false" />
-
-				<!--视频列表-->
-				<video-list :list_data="videoData" @listTap="videoListTap" :show="goodsTabData.tabCur==4?true:false" />
 			</view>
 
 			<!--占位底部距离-->
@@ -134,7 +121,7 @@
 			</view>
 
 			<!--商品列表-->
-			<goods-list :list_data="goodsData" @listTap="goodsListTap" />
+			<goods-list :list_data="goods.items" @listTap="goodsListTap" />
 
 			<!--占位底部距离-->
 			<view class="cu-tabbar-height" />
@@ -153,18 +140,17 @@
 
 <script>
 	//加载组件  
-	import welcomeTip from '@/components/base/welcome-tip';
+
 	import swiperBackground from '@/components/base/swiper-background';
 	import gridMenuList from '@/components/list/grid-menu-list';
-	import identifyList from '@/components/list/identify-list';
-	import sellQuicklyList from '@/components/list/sell-quickly-list';
+
 	import activityList from '@/components/list/activity-list';
 	import goodsList from '@/components/list/goods-list';
-	import liveList from '@/components/list/live-list';
-	import videoList from '@/components/list/video-list';
+
 	import footerTabbar from '@/components/footer/footer-tabbar';
 	import gridSortList from '@/components/list/grid-sort-list';
 	import modalImg from '@/components/base/modal-img';
+	import data from '@/common/data.js'
 
 	//======================================================================
 	import _home_data from '@/static/data/home.js'; //虚拟数据
@@ -178,30 +164,29 @@
 		computed: {
 			...mapGetters('app', {
 				cate: 'cate',
-				goods:'goods',
-				banner:'banner'
-			})
+				goods: 'goods',
+				banner: 'banner'
+			}),
 		},
+
 		components: {
-			welcomeTip,
 			swiperBackground,
 			gridMenuList,
-			identifyList,
-			sellQuicklyList,
 			activityList,
 			goodsList,
-			liveList,
-			videoList,
 			footerTabbar,
 			gridSortList,
 			modalImg
 		},
 		data() {
 			return {
+				query: {
+					page: 1,
+					size: 100
+				},
 				swiperInfo: {
 					index: 0,
 					show: true,
-					welcome: true,
 					list: []
 				},
 				headInfo: {
@@ -213,18 +198,15 @@
 					tabCur: 0,
 					scrollLeft: 0,
 				},
-				viewContent: {
-					welcome: true,
-				},
+
 				gridMenuData: [],
 				identifyData: [],
 				quickly: {},
 				activity: [],
-				goodsTabData: {
+				sortData: {
 					tabCur: 0,
 					list: []
 				},
-				goodsData: [],
 				liveData: [],
 				videoData: [],
 				gridSortData: [],
@@ -254,41 +236,38 @@
 					this.setReachBottom();
 				}
 			},
+			banner(newBanner, oldBanner) {
+				this.swiperInfo.list = newBanner;
+			},
+			cate(newCate, oldCate) {
+				this.headTab.list = newCate;
+			}
 		},
 		created() {
 			//加载虚拟数据
 
-			this.headTab.list = _home_data.tab();
-			this.swiperInfo.list = _home_data.swiper();
-			
+			this.headTab.list = this.cate;
+			this.swiperInfo.list = this.banner;
 			this.gridMenuData = _home_data.nav();
-			this.identifyData = _home_data.live();
-			this.quickly.swiper = _home_data.earn();
-			this.quickly.list = _home_data.sellQuickly();
 			this.activity = _home_data.activity();
-			this.goodsTabData.list = _home_data.goodsTab();
-			//商品列表数据
-			let GoodsData = _home_data.goodsList();
-			//推荐感兴趣数据
-			let recommendData = _home_data.recommend();
-			//把推荐感兴趣的数据，添加到商品数据里，可扩展为随机位置显示。
-			GoodsData.splice(1, 0, recommendData);
-			this.goodsData = GoodsData;
-			this.headInfo.Class = 'welcome';
+			this.sortData.list = data.sortList;
+			utils.setBarColor(false);
+			this.getData();
 		},
 		mounted() {
 			uni.pageScrollTo({
 				scrollTop: 0,
 				duration: 0
 			});
-			//次级虚拟数据加载
-			this.liveData = _home_data.liveData();
-			this.videoData = _home_data.videoData();
+
 
 
 			// console.log(this.cate);
 		},
 		methods: {
+			async getData() {
+				await this.$store.dispatch('app/get_goods', this.query);
+			},
 			//页面被滚动
 			setPageScroll(scrollTop) {
 				//console.log(scrollTop);
@@ -305,17 +284,7 @@
 			setReachBottom() {
 				console.log('触底了');
 			},
-			//欢迎提示关闭事件
-			welcomeClose(bol) {
-				this.swiperInfo.welcome = bol;
-				this.headTab.welcome = bol;
-				let Class = this.headInfo.Class;
-				this.headInfo.Class = Class.replace(/welcome/g, '');
-				this.viewContent.welcome = bol;
-				//设置颜色
-				utils.setBarColor(false);
-				console.log(bol);
-			},
+
 			//搜索框下的tab菜单被点击
 			tabSelect(e) {
 				let index = e.currentTarget.dataset.id;
@@ -355,8 +324,8 @@
 				console.log(e);
 			},
 			//商品列表上的分类tab被点击
-			goodsTab(e) {
-				this.goodsTabData.tabCur = e.currentTarget.dataset.id;
+			sortTab(e) {
+				this.sortData.tabCur = e.currentTarget.dataset.id;
 				// #ifdef H5
 				uni.pageScrollTo({
 					scrollTop: 1060,
@@ -386,7 +355,7 @@
 						url: '/pages/goods/second_terrace'
 					});
 				} else {
-				
+
 				}
 			},
 			liveListTap(e) {
@@ -397,7 +366,7 @@
 			},
 			gridSortTap(e) {
 				console.log(e);
-				if(e.data.type == "more"){
+				if (e.data.type == "more") {
 					uni.navigateTo({
 						url: '/pages/home/cate'
 					});
@@ -439,6 +408,15 @@
 </script>
 
 <style lang="scss" scoped>
+	.app-home-top {
+		position: relative;
+		width: 100%;
+		z-index: 9;
+		padding-top: var(--status-bar-height);
+		top: calc((var(--status-bar-height) + 101rpx) - (var(--status-bar-height) + 101rpx) - (var(--status-bar-height) + 101rpx));
+		min-height: calc(var(--status-bar-height) + 101rpx);
+	}
+
 	.app-head-search-box {
 		position: fixed;
 		width: 100%;
@@ -550,6 +528,7 @@
 		transition: all .25s;
 		z-index: 9999;
 		background: #fff;
+		padding-bottom: 5px;
 
 		/* #ifndef MP */
 		top: calc(var(--status-bar-height) + 101rpx);
