@@ -2,6 +2,7 @@
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
+			this.init().then().catch()
 		},
 		onShow: function() {
 			console.log('App Show')
@@ -14,4 +15,6 @@
 
 <style>
 	/*每个页面公共css */
+	@import "static/colorui/main.css";
+	@import "static/colorui/icon.css";
 </style>
