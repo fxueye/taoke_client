@@ -11,7 +11,7 @@
 <script>
 	export default {
 		name: 'skw-bar',
-		
+
 		props: {
 			index: {
 				type: Number,
@@ -19,56 +19,57 @@
 			},
 			data: {
 				type: Array,
-				default: () => [{
-						name: '首页',
-						icon: 'cuIcon-home',
-						iconFill: 'cuIcon-homefill'
-					},
-					{
-						name: '分类',
-						icon: 'cuIcon-similar',
-						iconFill: 'cuIcon-similar'
-					},
-					{
-						name: '消息',
-						icon: 'cuIcon-message',
-						iconFill: 'cuIcon-messagefill'
-					},
-					{
-						name: '我的',
-						icon: 'cuIcon-my',
-						iconFill: 'cuIcon-myfill'
-					}
-				]
+				default: () => {
+					return [{
+							name: '首页',
+							icon: 'cuIcon-home',
+							iconFill: 'cuIcon-homefill'
+						},
+						{
+							name: '分类',
+							icon: 'cuIcon-similar',
+							iconFill: 'cuIcon-similar'
+						},
+						{
+							name: '消息',
+							icon: 'cuIcon-message',
+							iconFill: 'cuIcon-messagefill'
+						},
+						{
+							name: '我的',
+							icon: 'cuIcon-my',
+							iconFill: 'cuIcon-myfill'
+						}
+					]
+				}
 			}
 		},
-		created(){
+		created() {
 			this.sindex = this.index;
 		},
 		data() {
 			return {
-				sindex:0,
+				sindex: 0,
 			};
 		},
-		watch:{
-			index(){
+		watch: {
+			index() {
 				this.sindex = this.index;
 			}
-		}
-		,
+		},
 		methods: {
 			tabTap(index) {
 				if (index != this.index) {
 					this.$emit('tabTap', index);
 				}
-				
+
 			}
 		}
 	}
 </script>
 
 <style>
-	.bottom-fixed{
+	.bottom-fixed {
 		position: fixed;
 		z-index: 999999;
 		width: 100%;

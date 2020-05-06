@@ -1,9 +1,13 @@
 <template>
 	<view>
-		<view class="home-top">
-			<skw-search></skw-search>
-			<skw-nav :index="navIndex" @navSelect="navSelect"></skw-nav>
+		<view class="home-header">
+			<view class="home-nav">
+				<skw-search></skw-search>
+				<skw-nav :index="navIndex" @navSelect="navSelect"></skw-nav>
+			</view>
 		</view>
+		<view></view>
+		<skw-swiper></skw-swiper>
 	
 	</view>
 </template>
@@ -11,11 +15,13 @@
 <script>
 	import skwSearch from '@/components/skw-seach/skw-search'
 	import skwNav from '@/components/skw-nav/skw-nav'
+	import skwSwiper from '@/components/skw-swiper/skw-swiper'
 	export default {
 		name: "home",
 		components: {
 			skwSearch,
-			skwNav
+			skwNav,
+			skwSwiper
 		},
 		data() {
 			return {
@@ -39,11 +45,17 @@
 </script>
 
 <style lang="scss" scoped>
-	.home-top {
-		position: fixed;
-		width: 100%;
-		top: 0;
-		z-index: 9999;
-		padding-top: var(--status-bar-height);
+	.home-header{
+		height: 164rpx;
+		display: block;
+		position: relative;
+		.home-nav {
+			position: fixed;
+			width: 100%;
+			top: 0;
+			z-index: 9999;
+			padding-top: var(--status-bar-height);
+		}
 	}
+	
 </style>

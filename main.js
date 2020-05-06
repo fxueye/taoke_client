@@ -23,25 +23,6 @@ Vue.prototype.init = function() {
 		try {
 			let systemInfo = uni.getSystemInfoSync();
 
-			// #ifndef MP
-			Vue.prototype.StatusBar = systemInfo.statusBarHeight;
-			if (e.platform == 'android') {
-				Vue.prototype.CustomBar = systemInfo.statusBarHeight + 50;
-			} else {
-				Vue.prototype.CustomBar = systemInfo.statusBarHeight + 45;
-			};
-			// #endif
-			// #ifdef MP-WEIXIN
-			Vue.prototype.StatusBar = systemInfo.statusBarHeight;
-			let custom = wx.getMenuButtonBoundingClientRect();
-			Vue.prototype.Custom = custom;
-			Vue.prototype.CustomBar = custom.bottom + custom.top - systemInfo.statusBarHeight;
-			// #endif		
-			// #ifdef MP-ALIPAY
-			Vue.prototype.StatusBar = systemInfo.statusBarHeight;
-			Vue.prototype.CustomBar = systemInfo.statusBarHeight + systemInfo.titleBarHeight;
-			// #endif
-
 
 			let openId = getOpenId();
 

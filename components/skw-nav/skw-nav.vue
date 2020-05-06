@@ -1,18 +1,18 @@
 <template>
 	<view class="flex">
-		<view class="basis-xl">
+		<view class="basis-xxl">
 			<scroll-view scroll-x class="bg-red nav" scroll-with-animation :scroll-left="scrollLeft">
 				<view class="cu-item" v-for="(item,idx) in data" :class="sindex==idx?'text-white cur':''" :key="idx" @tap="navSelect(idx)">
 					{{item.name}}
 				</view>
 			</scroll-view>
 		</view>
-		<view class="basis-xs">
-			<view class="sort-icon" @tap="cateVueTap">
+		<view class="bg-red basis-xxs">
+			<view class="sort-icon text-white" @tap="cateTap">
 				<text class="cuIcon-sort" />
 			</view>
 		</view>
-		
+
 	</view>
 </template>
 
@@ -26,31 +26,33 @@
 			},
 			data: {
 				type: Array,
-				default: () => [{
-						name: '首页'
-					},
-					{
-						name: '分类',
-					},
-					{
-						name: '消息',
-					},
-					{
-						name: '我的',
-					},
-					{
-						name: '我的',
-					},
-					{
-						name: '我的',
-					},
-					{
-						name: '我的',
-					},
-					{
-						name: '我的',
-					}
-				]
+				default: () => {
+					return [{
+							name: '首页'
+						},
+						{
+							name: '分类',
+						},
+						{
+							name: '消息',
+						},
+						{
+							name: '我的',
+						},
+						{
+							name: '我的',
+						},
+						{
+							name: '我的',
+						},
+						{
+							name: '我的',
+						},
+						{
+							name: '我的',
+						}
+					]
+				}
 			}
 		},
 		data() {
@@ -76,6 +78,9 @@
 					this.$emit('navSelect', index);
 				}
 
+			},
+			cateTap() {
+				this.$emit('cateTap');
 			}
 		}
 	}
@@ -89,8 +94,21 @@
 		margin: 0 10rpx;
 		padding: 0 20rpx;
 	}
-	.fixed{
-		.sort-icon{
+
+	.flex {
+		.basis-xxl {
+			flex-basis: 90%;
+			width: 90%;
+			z-index: 1;
+		}
+
+		.basis-xxs {
+			flex-basis: 10%;
+			z-index: 1;
+			width: 10%;
+		}
+
+		.sort-icon {
 			font-size: 55rpx;
 			height: 64rpx;
 			line-height: 64rpx;
