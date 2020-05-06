@@ -9,7 +9,8 @@
 		<view></view>
 		<skw-swiper></skw-swiper>
 		<skw-grid></skw-grid>
-		<skw-goods :data="goods.items"></skw-goods>
+		<skw-goods :data="goods.items" :loadStatus="loadStatus"></skw-goods>
+
 	</view>
 </template>
 
@@ -41,6 +42,28 @@
 			skwGrid,
 			skwGoods
 		},
+		props:{
+			scrollY: {
+				type: Number,
+				default: 0
+			},
+			scrollBottom: {
+				type: Number,
+				default: 0
+			},
+			
+		},
+		watch: {
+			scrollY() {
+				this.setPageScroll(this.scrollY);
+			},
+			scrollBottom() {
+				if (this.scrollBottom != 0) {
+					this.setReachBottom();
+				}
+			},
+			
+		},
 		created() {
 			this.getData();
 		},
@@ -51,17 +74,30 @@
 					page: 1,
 					size: 100
 				},
+				loadStatus: 'more',
 				inputBottom: 0,
 				navIndex: 0,
 			};
 		},
 		methods: {
 			getData() {
+				this.loadStatus = "loading"
 				this.$store.dispatch('app/get_goods', this.query).then(res => {
-				
+					this.loadStatus = "more";
 				}).catch(err => {
-					
+					this.loadStatus = "noMore";
 				});
+			},
+			//页面被滚动
+			setPageScroll(scrollTop) {
+				console.log(scrollTop);
+			
+			},
+			//触底了
+			setReachBottom() {
+				this.query.page = this.goods.page + 1;
+				this.getData();
+			
 			},
 			inputFocus(e) {
 				this.inputBottom = e.detail.height

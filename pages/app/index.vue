@@ -1,6 +1,7 @@
 <template>
 	<view>
-		<home></home>
+		<home :scrollY="scrollY" :scrollBottom="scrollBottom"></home>
+		<view class="cu-tabbar-height" />
 		<skw-bar :index="barIndex" @tabTap="tabTap"></skw-bar>
 	</view>
 </template>
@@ -16,7 +17,9 @@
 		},
 		data() {
 			return {
-				barIndex: 0
+				barIndex: 0,
+				scrollY:0,
+				scrollBottom:0,
 			}
 		},
 		onLoad() {
@@ -26,7 +29,15 @@
 			tabTap(index) {
 				this.barIndex = index;
 			}
-		}
+		},
+		onPageScroll(e) {
+			this.scrollY = e.scrollTop;
+			//console.log(e.scrollTop);
+		},
+		onReachBottom(e) {
+			let timestamp = new Date().getTime();
+			this.scrollBottom = timestamp;
+		},
 	}
 </script>
 

@@ -1,6 +1,6 @@
 <template>
 	<view class="goods-box">
-		<view class="flex flex-wrap">
+		<view class="flex flex-wrap" >
 			<view class="basis-df padding-sm padding-right-xs">
 				<block v-for="(item,index) in data" :key="index" v-if="index % 2 == 0">
 					<view class="bg-white margin-bottom-sm list-radius" @tap="listTap(item,index)">
@@ -132,19 +132,28 @@
 				</block>
 			</view>
 		</view>
+		<skw-load-more :status="loadStatus"></skw-load-more>
 	</view>
 </template>
 
 <script>
 	import utils from '@/common/utils.js';
+	import skwLoadMore from '@/components/skw-load-more/skw-load-more'
 	export default {
 		name: 'skw-goods',
+		components:{
+			skwLoadMore
+		},
 		props: {
 			data: {
 				type: Array,
 				default: () => {
 					return []
 				}
+			},
+			loadStatus: {
+				type: String,
+				default: 'more'
 			}
 		},
 		filters: {
@@ -164,6 +173,7 @@
 </script>
 
 <style lang="scss" scoped>
+
 	.goods-box {
 		position: relative;
 		width: 100%;
