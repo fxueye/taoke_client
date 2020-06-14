@@ -10,7 +10,10 @@
 		<skw-swiper :data="banner"></skw-swiper>
 		<skw-grid></skw-grid>
 		<skw-goods :data="goods.items" :loadStatus="loadStatus"></skw-goods>
-
+		<view class="cu-load load-modal" v-if="loading">
+			<view class="cuIcon-emojifill text-orange"></view>
+			<view class="gray-text">加载中...</view>
+		</view>
 	</view>
 </template>
 
@@ -42,7 +45,7 @@
 			skwGrid,
 			skwGoods
 		},
-		props:{
+		props: {
 			scrollY: {
 				type: Number,
 				default: 0
@@ -51,7 +54,7 @@
 				type: Number,
 				default: 0
 			},
-			
+
 		},
 		watch: {
 			scrollY() {
@@ -62,7 +65,7 @@
 					this.setReachBottom();
 				}
 			},
-			
+
 		},
 		created() {
 			this.getData();
@@ -77,32 +80,37 @@
 				loadStatus: 'more',
 				inputBottom: 0,
 				navIndex: 0,
+				loading:false,
 			};
 		},
 		methods: {
 			async getData() {
 				await this.$store.dispatch('app/get_cate');
 				await this.$store.dispatch('app/get_banner');
+				
 				this.getGoods();
+				
 			},
-			getGoods(){
+			getGoods() {
 				this.loadStatus = "loading"
 				this.$store.dispatch('app/get_goods', this.query).then(res => {
 					this.loadStatus = "more";
+					this.loading = false;
 				}).catch(err => {
 					this.loadStatus = "noMore";
+					this.loading = false;
 				});
 			},
 			//页面被滚动
 			setPageScroll(scrollTop) {
 				console.log(scrollTop);
-			
+
 			},
 			//触底了
 			setReachBottom() {
 				this.query.page = this.goods.page + 1;
 				this.getGoods();
-			
+
 			},
 			inputFocus(e) {
 				this.inputBottom = e.detail.height
@@ -113,6 +121,10 @@
 			navSelect(index) {
 				console.log(index);
 				this.navIndex = index;
+				this.query.cid = index;
+				this.query.page = 1;
+				this.loading = true;
+				this.getGoods();
 			}
 		}
 	}

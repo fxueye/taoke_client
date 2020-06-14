@@ -1,5 +1,5 @@
 <template>
-	<view v-show="visible" @click="onClick" class="bottom-right-box">
+	<view v-if="visible" @click="onClick" class="bottom-right-box">
 		<button class="cu-btn cuIcon-top bg-red"></button>
 	</view>
 </template>
