@@ -3,11 +3,11 @@
 		<view class="home-header">
 			<view class="home-nav">
 				<skw-search></skw-search>
-				<skw-nav :index="navIndex" @navSelect="navSelect"></skw-nav>
+				<skw-nav :data='cate' :index="navIndex" @navSelect="navSelect"></skw-nav>
 			</view>
 		</view>
 		<view></view>
-		<skw-swiper></skw-swiper>
+		<skw-swiper :data="banner"></skw-swiper>
 		<skw-grid></skw-grid>
 		<skw-goods :data="goods.items" :loadStatus="loadStatus"></skw-goods>
 
@@ -80,7 +80,12 @@
 			};
 		},
 		methods: {
-			getData() {
+			async getData() {
+				await this.$store.dispatch('app/get_cate');
+				await this.$store.dispatch('app/get_banner');
+				this.getGoods();
+			},
+			getGoods(){
 				this.loadStatus = "loading"
 				this.$store.dispatch('app/get_goods', this.query).then(res => {
 					this.loadStatus = "more";
@@ -96,7 +101,7 @@
 			//触底了
 			setReachBottom() {
 				this.query.page = this.goods.page + 1;
-				this.getData();
+				this.getGoods();
 			
 			},
 			inputFocus(e) {

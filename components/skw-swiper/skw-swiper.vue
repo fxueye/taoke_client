@@ -3,7 +3,7 @@
 		<swiper class="screen-swiper square-dot" indicator-dots circular autoplay interval="5000" duration="500">
 			<swiper-item v-for="(item,index) in data" :key="index">
 				<view>
-					<image :src="item.url" mode="widthFix"></image>
+					<image :src="item.img" mode="widthFix"></image>
 				</view>
 			</swiper-item>
 		</swiper>
@@ -22,10 +22,10 @@
 				default: () => {
 					return [{
 						id: 0,
-						url: 'https://img.alicdn.com/imgextra/i4/2053469401/O1CN01kyBlPz2JJi0p0IQv7_!!2053469401.jpg'
+						img: 'https://img.alicdn.com/imgextra/i4/2053469401/O1CN01kyBlPz2JJi0p0IQv7_!!2053469401.jpg'
 					}, {
 						id: 1,
-						url: 'https://img.alicdn.com/imgextra/i4/2053469401/O1CN01kyBlPz2JJi0p0IQv7_!!2053469401.jpg'
+						img: 'https://img.alicdn.com/imgextra/i4/2053469401/O1CN01kyBlPz2JJi0p0IQv7_!!2053469401.jpg'
 					}]
 				}
 
