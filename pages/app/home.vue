@@ -7,9 +7,13 @@
 			</view>
 		</view>
 		<view></view>
-		<skw-swiper :data="banner"></skw-swiper>
-		<skw-grid></skw-grid>
+		<skw-swiper v-if="navIndex == 0" :data="banner"></skw-swiper>
+		<skw-grid v-if="subCate" :data="subCate"></skw-grid>
+		
+		<skw-sort-tab></skw-sort-tab>
 		<skw-goods :data="goods.items" :loadStatus="loadStatus"></skw-goods>
+		
+		
 		<view class="cu-load load-modal" v-if="loading">
 			<view class="cuIcon-emojifill text-orange"></view>
 			<view class="gray-text">加载中...</view>
@@ -23,6 +27,7 @@
 	import skwSwiper from '@/components/skw-swiper/skw-swiper'
 	import skwGrid from '@/components/skw-grid/skw-grid'
 	import skwGoods from '@/components/skw-goods/skw-goods'
+	import skwSortTab from '@/components/skw-sort-tab/skw-sort-tab'
 
 
 	import {
@@ -43,7 +48,8 @@
 			skwNav,
 			skwSwiper,
 			skwGrid,
-			skwGoods
+			skwGoods,
+			skwSortTab
 		},
 		props: {
 			scrollY: {
@@ -81,6 +87,7 @@
 				inputBottom: 0,
 				navIndex: 0,
 				loading:false,
+				subCate:[],
 			};
 		},
 		methods: {
@@ -103,7 +110,7 @@
 			},
 			//页面被滚动
 			setPageScroll(scrollTop) {
-				console.log(scrollTop);
+				// console.log(scrollTop);
 
 			},
 			//触底了
@@ -120,8 +127,14 @@
 			},
 			navSelect(index) {
 				console.log(index);
+				uni.pageScrollTo({
+					scrollTop: 0,
+					duration: 200
+				});
 				this.navIndex = index;
-				this.query.cid = index;
+				var cate = this.cate[index];
+				this.subCate  = cate.sub_cate;
+				this.query.cid = cate.id;
 				this.query.page = 1;
 				this.loading = true;
 				this.getGoods();
