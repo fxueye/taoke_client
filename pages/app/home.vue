@@ -8,12 +8,12 @@
 		</view>
 		<view></view>
 		<skw-swiper v-if="navIndex == 0" :data="banner"></skw-swiper>
-		<skw-grid v-if="subCate" :data="subCate"></skw-grid>
-		
-		<skw-sort-tab></skw-sort-tab>
+		<skw-grid showNum="9" v-if="subCate" :data="subCate" @moreTap="moreTap"></skw-grid>
+
+		<skw-sort-tab v-if="navIndex != 0" @sortTab="sortTab"></skw-sort-tab>
 		<skw-goods :data="goods.items" :loadStatus="loadStatus"></skw-goods>
-		
-		
+
+
 		<view class="cu-load load-modal" v-if="loading">
 			<view class="cuIcon-emojifill text-orange"></view>
 			<view class="gray-text">加载中...</view>
@@ -86,17 +86,17 @@
 				loadStatus: 'more',
 				inputBottom: 0,
 				navIndex: 0,
-				loading:false,
-				subCate:[],
+				loading: false,
+				subCate: [],
 			};
 		},
 		methods: {
 			async getData() {
 				await this.$store.dispatch('app/get_cate');
 				await this.$store.dispatch('app/get_banner');
-				
+
 				this.getGoods();
-				
+
 			},
 			getGoods() {
 				this.loadStatus = "loading"
@@ -125,6 +125,13 @@
 			inputBlur(e) {
 				this.inputBottom = 0
 			},
+			sortTab(e) {
+				console.log(e.item);
+				console.log(e.index);
+			},
+			moreTap(e) {
+
+			},
 			navSelect(index) {
 				console.log(index);
 				uni.pageScrollTo({
@@ -133,7 +140,7 @@
 				});
 				this.navIndex = index;
 				var cate = this.cate[index];
-				this.subCate  = cate.sub_cate;
+				this.subCate = cate.sub_cate;
 				this.query.cid = cate.id;
 				this.query.page = 1;
 				this.loading = true;

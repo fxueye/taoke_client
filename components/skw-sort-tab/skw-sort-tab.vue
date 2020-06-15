@@ -24,7 +24,8 @@
 		name: 'skw-sort-tab',
 		data() {
 			return {
-				tabCur: 3
+				tabCur: 3,
+
 			}
 		},
 		props: {
@@ -57,17 +58,24 @@
 						}
 					]
 				}
+			},
+			scrollTop: {
+				type: Number,
+				default: 233
 			}
 		},
 		methods: {
 			sortTab(item, index) {
-				
-				if(this.tabCur == index && item.fold){
-					item.value = item.value == 'ASC' ? 'DESC':'ASC';
+
+				if (this.tabCur == index && item.fold) {
+					item.value = item.value == 'ASC' ? 'DESC' : 'ASC';
 				}
-				
+				uni.pageScrollTo({
+					scrollTop: this.scrollTop,
+					duration: 200
+				});
 				this.tabCur = index;
-				
+
 				this.$emit('sortTab', {
 					item,
 					index
