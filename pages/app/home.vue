@@ -8,7 +8,7 @@
 		</view>
 		<view></view>
 		<skw-swiper v-if="navIndex == 0" :data="banner"></skw-swiper>
-		<skw-grid showNum="9" v-if="subCate" :data="subCate" @moreTap="moreTap"></skw-grid>
+		<skw-grid v-if="subCate.length > 0" showNum="9" :data="subCate" @moreTap="moreTap"></skw-grid>
 
 		<skw-sort-tab v-if="navIndex != 0" @sortTab="sortTab"></skw-sort-tab>
 		<skw-goods :data="goods.items" :loadStatus="loadStatus"></skw-goods>
