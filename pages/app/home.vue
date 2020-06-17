@@ -9,15 +9,13 @@
 		<view></view>
 		<skw-swiper v-if="navIndex == 0" :data="banners"></skw-swiper>
 
-
-		<image class="banner_one radius padding-sm" v-if="banner_one.length > 0" :src="banner_one[0].img" lazy-load mode="widthFix" />
-
+		<image class="banner_one radius padding-sm bg-white" v-if="banner_one.length > 0 && navIndex == 0" :src="banner_one[0].img" lazy-load mode="widthFix" />
 
 		<skw-grid v-if="subCate.length > 0" showNum="9" :data="subCate" @moreTap="moreTap"></skw-grid>
 
 		<skw-sort-tab v-if="navIndex != 0" @sortTab="sortTab"></skw-sort-tab>
+		
 		<skw-goods :data="goods.items" :loadStatus="loadStatus"></skw-goods>
-
 
 		<view class="cu-load load-modal" v-if="loading">
 			<view class="cuIcon-emojifill text-orange"></view>
