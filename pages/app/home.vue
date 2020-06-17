@@ -7,7 +7,12 @@
 			</view>
 		</view>
 		<view></view>
-		<skw-swiper v-if="navIndex == 0" :data="banner"></skw-swiper>
+		<skw-swiper v-if="navIndex == 0" :data="banners"></skw-swiper>
+
+
+		<image class="banner_one radius padding-sm" v-if="banner_one.length > 0" :src="banner_one[0].img" lazy-load mode="widthFix" />
+
+
 		<skw-grid v-if="subCate.length > 0" showNum="9" :data="subCate" @moreTap="moreTap"></skw-grid>
 
 		<skw-sort-tab v-if="navIndex != 0" @sortTab="sortTab"></skw-sort-tab>
@@ -40,7 +45,8 @@
 			...mapGetters('app', {
 				cate: 'cate',
 				goods: 'goods',
-				banner: 'banner'
+				banners: 'banners',
+				banner_one: 'banner_one'
 			}),
 		},
 		components: {
@@ -163,5 +169,8 @@
 			z-index: 9999;
 			padding-top: var(--status-bar-height);
 		}
+	}
+	.banner_one{
+		width: 100%;
 	}
 </style>

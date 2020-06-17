@@ -104,8 +104,15 @@ const app = {
 		goods: (state, getter, rootState) => {
 			return state.goods;
 		},
-		banner: (state, getter, rootState) => {
-			return state.banner;
+		banners: (state, getter, rootState) => {
+			return state.banner.filter(b => {
+				return b.type == 0;
+			});
+		},
+		banner_one: (state, getter, rootState) => {
+			return state.banner.filter(b => {
+				return b.type == 1;
+			});
 		}
 
 	}
