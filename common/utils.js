@@ -55,20 +55,7 @@ class utils {
 		let date = utils.timestamp2Date(timestamp);
 		return utils.dateFormat(fmt, date);
 	}
-	//设置手机通知栏字体颜色
-	static setBarColor(black = false) {
-		if (black) {
-			uni.setNavigationBarColor({
-				frontColor: '#000000',
-				backgroundColor: '#FAFAFA'
-			});
-		} else {
-			uni.setNavigationBarColor({
-				frontColor: '#ffffff',
-				backgroundColor: '#FAFAFA'
-			});
-		}
-	}
+
 	//计算页数
 	static getPageNum(total, row) {
 		let num = Number(total) / Number(row);

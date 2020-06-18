@@ -1,0 +1,16 @@
+.app-header {
+	height: 164rpx;
+	display: block;
+	position: relative;
+}
+.app-nav {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 9999;
+	background-color: #e54d42;  
+	padding-top: var(--status-bar-height);
+}
+.status-bar-height{
+	margin-top: calc(var(--status-bar-height));
+}

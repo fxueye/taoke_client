@@ -1,13 +1,13 @@
 <template>
 	<view>
-		<view class="home-header">
-			<view class="home-nav">
+		<view class="app-header">
+			<view class="app-nav">
 				<skw-search></skw-search>
 				<skw-nav :data='cate' :index="navIndex" @navSelect="navSelect"></skw-nav>
 			</view>
 		</view>
 		<view></view>
-		<skw-swiper v-if="navIndex == 0" :data="banners"></skw-swiper>
+		<skw-swiper class="status-bar-height" v-if="navIndex == 0" :data="banners"></skw-swiper>
 
 		<image class="banner_one radius padding-sm bg-white" v-if="banner_one.length > 0 && navIndex == 0" :src="banner_one[0].img" lazy-load mode="widthFix" />
 
@@ -94,6 +94,9 @@
 				subCate: [],
 			};
 		},
+		onReady() {
+			utils.setBarColor(true);
+		},
 		methods: {
 			async getData() {
 				await this.$store.dispatch('app/get_cate');
@@ -155,20 +158,21 @@
 </script>
 
 <style lang="scss" scoped>
-	.home-header {
-		height: 164rpx;
-		display: block;
-		position: relative;
+	// .home-header {
+	// 	height: 164rpx;
+	// 	display: block;
+	// 	position: relative;
 
-		.home-nav {
-			position: fixed;
-			width: 100%;
-			top: 0;
-			z-index: 9999;
-			padding-top: var(--status-bar-height);
-		}
-	}
+	// 	.home-nav {
+	// 		position: fixed;
+	// 		width: 100%;
+	// 		top: 0;
+	// 		z-index: 9999;
+	// 		padding-top: var(--status-bar-height);
+	// 	}
+	// }
 	.banner_one{
 		width: 100%;
 	}
+
 </style>

@@ -4,7 +4,8 @@
 			"path": "pages/app/index",
 			"style": {}
 		}
-	],
+	    
+    ],
 	"globalStyle": {
 		"mp-alipay": {
 			/* 支付宝小程序特有相关 */

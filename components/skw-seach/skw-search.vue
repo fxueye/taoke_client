@@ -18,7 +18,9 @@
 			return {}
 		},
 		methods:{
-			
+			messageTap(e){
+				
+			}
 		}
 	}
 </script>
