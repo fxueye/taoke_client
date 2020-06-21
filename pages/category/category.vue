@@ -1,7 +1,7 @@
 <template>
 	<view>
-		<view class="app-header">
-			<view class="app-nav">
+		<view class="app-header bg-gradual-red">
+			<view class="app-nav bg-gradual-red">
 				<skw-search class="bg-gradual-red"></skw-search>
 			</view>
 		</view>
