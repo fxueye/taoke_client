@@ -7,13 +7,14 @@
 			</view>
 		</view>
 		<view></view>
-		<skw-swiper class="status-bar-height" v-if="navIndex == 0" :data="banners"></skw-swiper>
+		<view class="status-bar-height"></view>
+		<skw-swiper v-show="navIndex == 0" :data="banners"></skw-swiper>
 
 		<image class="banner_one radius padding-sm bg-white" v-if="banner_one.length > 0 && navIndex == 0" :src="banner_one[0].img" lazy-load mode="widthFix" />
 
-		<skw-grid v-if="subCate.length > 0" showNum="9" :data="subCate" @moreTap="moreTap"></skw-grid>
+		<skw-grid v-if="subCate.length > 0" :showNum="9" :data="subCate" @moreTap="moreTap"></skw-grid>
 
-		<skw-sort-tab v-if="navIndex != 0" @sortTab="sortTab"></skw-sort-tab>
+		<skw-sort-tab v-show="navIndex != 0" @sortTab="sortTab"></skw-sort-tab>
 		
 		<skw-goods :data="goods.items" :loadStatus="loadStatus"></skw-goods>
 
@@ -85,7 +86,7 @@
 				query: {
 					cid: 0,
 					page: 1,
-					size: 100
+					size: 20
 				},
 				loadStatus: 'more',
 				inputBottom: 0,
@@ -173,6 +174,7 @@
 	// }
 	.banner_one{
 		width: 100%;
+		height: 208rpx;
 	}
 
 </style>

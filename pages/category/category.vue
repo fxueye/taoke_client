@@ -178,6 +178,7 @@
 
 				.icon {
 					width: 80rpx;
+					height: 80rpx;
 				}
 			}
 		}

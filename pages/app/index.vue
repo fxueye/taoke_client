@@ -1,8 +1,9 @@
 <template>
 	<view>
-		<home v-if="barIndex == 0" :scrollY="scrollY" :scrollBottom="scrollBottom"></home>
-		<category v-if="barIndex == 1"></category>
-		
+		<home v-show="barIndex == 0" :scrollY="scrollY" :scrollBottom="scrollBottom"></home>
+		<category v-show="barIndex == 1"></category>
+		<my v-show="barIndex == 3"></my>
+
 		<view class="cu-tabbar-height" />
 		<skw-floating-button :visible="showFloatingButton" @click="goTop"></skw-floating-button>
 		<skw-bar :index="barIndex" @tabTap="tabTap"></skw-bar>
@@ -14,12 +15,14 @@
 	import skwFloatingButton from '@/components/skw-floating-button/skw-floating-button.vue';
 	import home from '@/pages/home/home'
 	import category from '@/pages/category/category'
+	import my from '@/pages/my/my'
 	import utils from '@/common/utils.js';
 	export default {
 		components: {
 			skwBar,
 			home,
 			category,
+			my,
 			skwFloatingButton
 		},
 		data() {
@@ -36,6 +39,7 @@
 		methods: {
 			tabTap(index) {
 				this.barIndex = index;
+				console.log(this.barIndex);
 			},
 			goTop() {
 				uni.pageScrollTo({
