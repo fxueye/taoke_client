@@ -2,7 +2,8 @@
 	<view>
 		<home v-show="barIndex == 0" :scrollY="scrollY" :scrollBottom="scrollBottom"></home>
 		<category v-show="barIndex == 1"></category>
-		<my v-show="barIndex == 3"></my>
+		<message v-show="barIndex == 2"></message>
+		<center v-show="barIndex == 3"></center>
 
 		<view class="cu-tabbar-height" />
 		<skw-floating-button :visible="showFloatingButton" @click="goTop"></skw-floating-button>
@@ -15,14 +16,16 @@
 	import skwFloatingButton from '@/components/skw-floating-button/skw-floating-button.vue';
 	import home from '@/pages/home/home'
 	import category from '@/pages/category/category'
-	import my from '@/pages/my/my'
+	import center from '@/pages/user/center'
+	import message from '@/pages/user/message'
 	import utils from '@/common/utils.js';
 	export default {
 		components: {
 			skwBar,
 			home,
 			category,
-			my,
+			center,
+			message,
 			skwFloatingButton
 		},
 		data() {

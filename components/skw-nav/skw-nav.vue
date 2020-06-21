@@ -1,13 +1,13 @@
 <template>
 	<view class="flex">
 		<view class="basis-xxl">
-			<scroll-view scroll-x class="bg-red nav" scroll-with-animation :scroll-left="scrollLeft">
+			<scroll-view scroll-x class="bg-gradual-red nav" scroll-with-animation :scroll-left="scrollLeft">
 				<view class="cu-item" v-for="(item,idx) in data" :class="sindex==idx?'text-white cur':''" :key="idx" @tap="navSelect(idx)">
 					{{item.name}}
 				</view>
 			</scroll-view>
 		</view>
-		<view class="bg-red basis-xxs">
+		<view class="cate basis-xxs">
 			<view class="sort-icon text-white" @tap="cateTap">
 				<text class="cuIcon-sort" />
 			</view>
@@ -93,6 +93,9 @@
 		line-height: 64rpx;
 		margin: 0 10rpx;
 		padding: 0 20rpx;
+	}
+	.cate{
+		background-color: #ec008c;
 	}
 
 	.flex {

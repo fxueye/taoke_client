@@ -1,6 +1,6 @@
 <template>
 	<view v-if="visible" @click="onClick" class="bottom-right-box">
-		<button class="cu-btn cuIcon-top bg-pink"></button>
+		<button class="cu-btn cuIcon-top bg-red"></button>
 	</view>
 </template>
 

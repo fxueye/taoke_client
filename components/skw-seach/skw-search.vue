@@ -1,5 +1,5 @@
 <template>
-	<view class="cu-bar search bg-red">
+	<view class="cu-bar search">
 		<view class="search-form round">
 			<text class="cuIcon-search"></text>
 			<input :adjust-position="false" type="text" placeholder="搜索商品名称或者宝贝标题"

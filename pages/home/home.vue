@@ -2,13 +2,13 @@
 	<view>
 		<view class="app-header">
 			<view class="app-nav">
-				<skw-search></skw-search>
-				<skw-nav :data='cate' :index="navIndex" @navSelect="navSelect"></skw-nav>
+				<skw-search class="bg-gradual-red"></skw-search>
+				<skw-nav class="bg-gradual-red" :data='cate' :index="navIndex" @navSelect="navSelect"></skw-nav>
 			</view>
 		</view>
 		<view></view>
 		<view class="status-bar-height"></view>
-		<skw-swiper v-show="navIndex == 0" :data="banners"></skw-swiper>
+		<skw-swiper class="bg-gradual-red-white" v-show="navIndex == 0" :data="banners"></skw-swiper>
 
 		<image class="banner_one radius padding-sm bg-white" v-if="banner_one.length > 0 && navIndex == 0" :src="banner_one[0].img" lazy-load mode="widthFix" />
 
@@ -172,6 +172,9 @@
 	// 		padding-top: var(--status-bar-height);
 	// 	}
 	// }
+	.bg-gradual-red-white{
+		background-image: linear-gradient( #f43f3b, #ec008c,#FFF);
+	}
 	.banner_one{
 		width: 100%;
 		height: 208rpx;

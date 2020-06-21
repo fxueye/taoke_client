@@ -1,78 +1,77 @@
 <template>
-	<view class="app-my-box">
-		<view class="bg-gradual-red app-head-box">
-			<!--标题栏-->
-			<!--小程序端不显示-->
-			<!-- #ifndef MP -->
-			<skw-title-bar :isBack="false" :fixed="true">
-				<block slot="right">
-					<text class="cuIcon-settings" @tap="settings" />
-				</block>
-			</skw-title-bar>
-			<!-- #endif -->
-
+	<view class="app-center-box">
+		<skw-title-bar :isBack="true" :fixed="true">
+			<block slot="content">
+				<text>用户中心</text>
+			</block>
+			<block slot="right">
+				<text class="cuIcon-settings white" @click="settingTap"></text>
+			</block>
+		</skw-title-bar>
+		<view class="app-header-box bg-gradual-red">
 			<!--用户信息-->
-			<view class="app-user-info-box">
+			<view class="app-user-box">
 				<!--未登陆-->
-				<view class="login-user-view" v-if="login">
+				<view class="login-user-view" v-if="!login">
 					<view class="login-user-avatar-view">
 						<view class="cu-avatar round lg" style="background-image:url(/static/image/avatar/1.jpg);" />
 					</view>
-					<button class="cu-btn sm radius" @tap="loginUrlTap">立即登录</button>
+					<button class="cu-btn sm radius" @tap="loginTap">立即登录</button>
 				</view>
 
 				<!--已登陆-->
 				<view class="cu-list menu-avatar" v-else>
 					<view class="cu-item">
-						<view class="cu-avatar round lg" style="background-image:url(/static/images/avatar/1.jpg);" />
+						<view class="cu-avatar round lg" style="background-image:url(/static/image/avatar/1.jpg);" />
 						<view class="content text-xl">
 							<view class="text-white">
-								<text class="margin-right">仔仔</text>
-								<text class="text-sm" @tap="loginTap">切换未登陆页面</text>
+								<text class="margin-right">xxxx</text>
+
 							</view>
 							<view class="text-white-bg text-sm">
-								<text class="text-border-x">关注 2</text>
-								<text>粉丝 9</text>
+								<!-- <text class="text-border-x">关注 2</text> -->
+								<!-- <text>粉丝 9</text> -->
 							</view>
 						</view>
 					</view>
 				</view>
-			</view>
 
-			<!--用户数据-->
-			<view class="app-user-info-num-box">
-				<view class="cu-list grid col-4 no-border">
-					<view class="cu-item" @tap="cartTap">
-						<view class="text-xl" v-if="login">-</view>
-						<view class="text-xl" v-else>0</view>
-						<text class="text-sm">购物车</text>
-					</view>
-					<view class="cu-item" @tap="footmarkTap">
-						<view class="text-xl" v-if="login">-</view>
-						<view class="text-xl" v-else>4</view>
-						<text class="text-sm">足迹</text>
-					</view>
-					<view class="cu-item">
-						<view class="text-xl" v-if="login">-</view>
-						<view class="text-xl" v-else>0</view>
-						<text class="text-sm">红包</text>
-					</view>
-					<view class="cu-item">
-						<view class="text-xl" v-if="login">-</view>
-						<view class="text-xl" v-else>0</view>
-						<text class="text-sm">账单</text>
+
+				<!--用户数据-->
+				<view class="app-user-info-num-box">
+					<view class="cu-list grid col-4 no-border">
+						<view class="cu-item">
+							<view class="text-xl" v-if="!login">-</view>
+							<view class="text-xl" v-else>0</view>
+							<text class="text-sm">购物车</text>
+						</view>
+						<view class="cu-item">
+							<view class="text-xl" v-if="!login">-</view>
+							<view class="text-xl" v-else>4</view>
+							<text class="text-sm">足迹</text>
+						</view>
+						<view class="cu-item">
+							<view class="text-xl" v-if="!login">-</view>
+							<view class="text-xl" v-else>0</view>
+							<text class="text-sm">红包</text>
+						</view>
+						<view class="cu-item">
+							<view class="text-xl" v-if="!login">-</view>
+							<view class="text-xl" v-else>0</view>
+							<text class="text-sm">账单</text>
+						</view>
 					</view>
 				</view>
-			</view>
 
-			<!--用户提示-->
-			<view class="text-sm app-user-info-tip-box" v-if="!login" @tap="realNameTap">
-				<view class="text-cut">偷偷告诉你，实名认证后宝贝更易卖出哦~</view>
-				<text class="cuIcon-right icon" />
+
+				<!--用户提示-->
+				<view class="text-sm app-user-info-tip-box" v-if="login" @tap="realNameTap">
+					<view class="text-cut">偷偷告诉你，实名认证后宝贝更易卖出哦~</view>
+					<text class="cuIcon-right icon" />
+				</view>
+
 			</view>
 		</view>
-
-
 		<view class="app-view-content">
 			<!--用户数据-->
 			<view class="padding-xs bg-white app-user-info-order-box">
@@ -109,30 +108,6 @@
 				</view>
 			</view>
 
-			<!--天天有钱-->
-			<view class="padding-xs bg-white margin-top app-user-info-money-box">
-				<view class="text-black text-lg text-bold padding-sm">天天有钱</view>
-				<view class="grid col-2 money-col">
-					<view class="money-item">
-						<view class="money-item-view">
-							<view class="cu-avatar lg" style="background-image:url(/static/images/my/1.png);" />
-							<view class="money-content">
-								<view class="text-black text-cut">边逛边赚钱</view>
-								<view class="text-gray text-sm text-cut">最高提现20元</view>
-							</view>
-						</view>
-					</view>
-					<view class="money-item">
-						<view class="money-item-view">
-							<view class="cu-avatar lg" style="background-image:url(/static/images/my/2.png);" />
-							<view class="money-content">
-								<view class="text-black text-cut">发条借钱</view>
-								<view class="text-gray text-sm text-cut">最高额度50000</view>
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>
 
 			<!--推荐工具-->
 			<view class="padding-xs bg-white margin-top app-user-info-tools-box">
@@ -159,7 +134,6 @@
 
 		</view>
 
-		<!--占位底部距离-->
 		<view class="cu-tabbar-height"></view>
 	</view>
 </template>
@@ -171,7 +145,7 @@
 	import skwTitleBar from '@/components/skw-title-bar/skw-title-bar';
 
 	export default {
-		name: "my",
+		name: "center",
 		computed: {
 			...mapGetters('app', {
 				cate: 'cate'
@@ -201,7 +175,55 @@
 		data() {
 			return {
 				login: false,
-				toolsList: []
+				toolsList: [{
+					id: 1,
+					icon: 'service',
+					name: '客服中心'
+				}, {
+					id: 2,
+					icon: 'squarecheck',
+					name: '我的订阅'
+				}, {
+					id: 3,
+					icon: 'friend',
+					name: '我的拼团'
+				}, {
+					id: 4,
+					icon: 'moneybag',
+					name: '借钱'
+				}, {
+					id: 5,
+					icon: 'read',
+					name: '平台规则'
+				}, {
+					id: 6,
+					icon: 'notification',
+					name: '活动报名'
+				}, {
+					id: 7,
+					icon: 'redpacket',
+					name: '领新人红包'
+				}, {
+					id: 8,
+					icon: 'vipcard',
+					name: '办信用卡'
+				}, {
+					id: 9,
+					icon: 'scan',
+					name: '活动扫码'
+				}, {
+					id: 10,
+					icon: 'present',
+					name: '签到送礼'
+				}, {
+					id: 11,
+					icon: 'delete',
+					name: '垃圾分类'
+				}, {
+					id: 12,
+					icon: 'settings',
+					name: '设置'
+				}]
 			};
 		},
 		onReady() {
@@ -220,7 +242,10 @@
 			setReachBottom() {
 
 			},
-			settings(e) {
+			settingTap(e) {
+
+			},
+			loginTap(e) {
 
 			}
 
@@ -230,18 +255,18 @@
 </script>
 
 <style lang="scss" scoped>
-	.app-my-box {
+	.app-center-box {
 		width: 100%;
 
-		.app-head-box {
+		.app-header-box {
 			padding-top: 0;
-			padding-bottom: 72.72rpx;
+			padding-bottom: 72rpx;
 
-			.app-user-info-box {
-				/* #ifdef MP */
-				padding-top: calc(var(--status-bar-height) + 50rpx);
 
-				/* #endif */
+			.app-user-box {
+				width: 100%;
+
+
 				.login-user-view {
 					position: relative;
 					text-align: center;
@@ -288,6 +313,7 @@
 				.cu-list.menu-avatar>.cu-item .content>view:first-child {
 					font-size: 34.54rpx;
 				}
+
 			}
 
 			.app-user-info-num-box {
@@ -351,37 +377,6 @@
 				color: inherit;
 			}
 
-			.app-user-info-money-box {
-				border-radius: 18.18rpx;
-
-				.money-col {
-					padding: 0 9.09rpx 9.09rpx;
-
-					.money-item {
-						position: relative;
-						padding: 9.09rpx;
-
-						.money-item-view {
-							border: 1.81rpx solid #f3f2f3;
-							border-radius: 18.18rpx;
-							position: relative;
-							padding: 9.09rpx;
-
-							.cu-avatar {
-								position: absolute;
-								left: 9.09rpx;
-							}
-
-							.money-content {
-								position: relative;
-								margin-left: 109.09rpx;
-								margin-bottom: 27.27rpx;
-								top: 12.72rpx;
-							}
-						}
-					}
-				}
-			}
 
 			.app-user-info-tools-box {
 				border-radius: 18.18rpx;
@@ -402,6 +397,6 @@
 
 			}
 		}
-	}
 
+	}
 </style>

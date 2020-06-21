@@ -1,6 +1,6 @@
 <template>
 	<view class="app-bar-title-box">
-		<view class="cu-bar" :class="[fixed?'fixed':'', shadow?'':'no-shadow', bgColor]">
+		<view class="cu-bar bg-gradual-red" :class="[fixed?'fixed':'', shadow?'':'no-shadow', bgColor]">
 			<view class="action" @tap="BackPage" v-if="isBack">
 				<text class="cuIcon-back"/>
 				<text>{{backText}}</text>

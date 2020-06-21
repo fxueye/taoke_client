@@ -2,7 +2,7 @@
 	<view>
 		<view class="app-header">
 			<view class="app-nav">
-				<skw-search></skw-search>
+				<skw-search class="bg-gradual-red"></skw-search>
 			</view>
 		</view>
 		

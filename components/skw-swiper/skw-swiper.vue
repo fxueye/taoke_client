@@ -42,7 +42,7 @@
 	.swiper-box {
 		width: 100%;
 		padding: 25rpx;
-		background-image: linear-gradient(#e54d42, white);
+		
 
 		.screen-swiper {
 			height: 276rpx;
