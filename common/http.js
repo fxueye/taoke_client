@@ -31,14 +31,14 @@ http.interceptor.response((response) => {
 			const res = response.data;
 			// console.log(res)
 			if (res.code !== '20000') {
-				if(res.code === '50008'){
+				if (res.code === '50008') {
 					removeToken();
 					return;
 				}
 				//TODO
 				uni.showModal({
 					title: '提示',
-					content: res.message,
+					content: res.msg,
 					showCancel: false
 				})
 				return Promise.reject(res);

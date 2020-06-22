@@ -8,7 +8,7 @@
 		</view>
 		<view></view>
 		<view class="status-bar-height"></view>
-		<skw-swiper class="bg-gradual-red-white" v-show="navIndex == 0" :data="banners"></skw-swiper>
+		<skw-swiper v-if="banners.length > 0" class="bg-gradual-red-white" v-show="navIndex == 0" :data="banners"></skw-swiper>
 
 		<image class="banner_one radius padding-sm bg-white" v-if="banner_one.length > 0 && navIndex == 0" :src="banner_one[0].img" lazy-load mode="widthFix" />
 

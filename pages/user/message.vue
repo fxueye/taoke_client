@@ -2,7 +2,7 @@
 	<view class="app-message-box">
 		<skw-title-bar :isBack="true" :fixed="true">
 			<block slot="content">
-				<text>用户消息</text>
+				<text>消息中心</text>
 			</block>
 			<block slot="right">
 				<text class="cuIcon-settings white"></text>
@@ -82,5 +82,4 @@
 		width: 100%;
 
 	}
-
 </style>
