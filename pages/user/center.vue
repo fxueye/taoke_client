@@ -91,7 +91,7 @@
 						<view class="text-xxl text-black" v-else>1</view>
 						<text class="text-sm">我卖出的</text>
 					</view>
-					<view class="cu-item" @tap="order_list_tap">
+					<view class="cu-item" >
 						<view class="text-xxl text-red" v-if="login">
 							<text class="cuIcon-cartfill"></text>
 						</view>
@@ -122,7 +122,7 @@
 				<view class="app-tools-list-box">
 					<view class="cu-list grid col-4 no-border">
 						<block v-for="(item,index) in toolsList" :key="index">
-							<view class="cu-item" v-if="index < 12" @tap="gridTap(item)">
+							<view class="cu-item" v-if="index < 12" >
 								<view class="text-black" :class="['cuIcon-' + item.icon]" />
 								<text>{{item.name}}</text>
 							</view>

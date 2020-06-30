@@ -1,0 +1,34 @@
+{
+	"name": "Skw-AlibcSDK",
+	"id": "Skw-AlibcSDK",
+	"version": "0.1.0",
+	"description": "阿里百川SDK",
+	"_dp_type": "nativeplugin",
+	"_dp_nativeplugin": {
+		"android": {
+			"plugins": [{
+				"type": "module",
+				"name": "Skw-AlibcSDK",
+				"class": "com.zhaobaoge.skw.uniplugin.SkwAlibcSDK"
+			}],
+			"integrateType": "aar",
+			"hooksClass": "",
+			"dependencies": [],
+			"compileOptions": {
+				"sourceCompatibility": "1.8",
+				"targetCompatibility": "1.8"
+			},
+			"abis": [
+				"armeabi-v7a",
+				"arm64-v8a",
+				"x86"
+			],
+			"minSdkVersion": "19",
+			"parameters": {
+
+			},
+			"permissions": []
+		}
+	}
+}
+

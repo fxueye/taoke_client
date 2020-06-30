@@ -19,6 +19,12 @@
 	import center from '@/pages/user/center'
 	import message from '@/pages/user/message'
 	import utils from '@/common/utils.js';
+	// #ifdef APP-PLUS
+	import plugin from '@/common/plugin.js';
+	// #endif
+	
+
+
 	export default {
 		components: {
 			skwBar,
@@ -37,7 +43,11 @@
 			}
 		},
 		onLoad() {
-
+			// #ifdef APP-PLUS
+			plugin.alibcsdk.init(res => {
+				console.log(res);
+			})
+			//#endif
 		},
 		methods: {
 			tabTap(index) {

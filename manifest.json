@@ -53,6 +53,22 @@
             "sdkConfigs" : {
                 "ad" : {}
             }
+        },
+        "nativePlugins" : {
+            "Skw-AlibcSDK" : {
+                "__plugin_info__" : {
+                    "name" : "Skw-AlibcSDK",
+                    "description" : "阿里百川SDK",
+                    "platforms" : "Android",
+                    "url" : "",
+                    "android_package_name" : "",
+                    "ios_bundle_id" : "",
+                    "isCloud" : false,
+                    "bought" : -1,
+                    "pid" : "",
+                    "parameters" : {}
+                }
+            }
         }
     },
     /* 快应用特有相关 */

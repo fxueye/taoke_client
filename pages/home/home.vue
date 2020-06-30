@@ -10,13 +10,14 @@
 		<view class="status-bar-height"></view>
 		<skw-swiper v-if="banners.length > 0" class="bg-gradual-red-white" v-show="navIndex == 0" :data="banners"></skw-swiper>
 
-		<image class="banner_one radius padding-sm bg-white" v-if="banner_one.length > 0 && navIndex == 0" :src="banner_one[0].img" lazy-load mode="widthFix" />
+		<image class="banner_one radius padding-sm bg-white" v-if="banner_one.length > 0 && navIndex == 0" :src="banner_one[0].img"
+		 lazy-load mode="widthFix" />
 
 		<skw-grid v-if="subCate.length > 0" :showNum="9" :data="subCate" @moreTap="moreTap"></skw-grid>
 
 		<skw-sort-tab v-show="navIndex != 0" @sortTab="sortTab"></skw-sort-tab>
-		
-		<skw-goods :data="goods.items" :loadStatus="loadStatus"></skw-goods>
+
+		<skw-goods :data="goods.items" :loadStatus="loadStatus" @listTap="listTap"></skw-goods>
 
 		<view class="cu-load load-modal" v-if="loading">
 			<view class="cuIcon-emojifill text-orange"></view>
@@ -32,7 +33,9 @@
 	import skwGrid from '@/components/skw-grid/skw-grid'
 	import skwGoods from '@/components/skw-goods/skw-goods'
 	import skwSortTab from '@/components/skw-sort-tab/skw-sort-tab'
-
+	// #ifdef APP-PLUS
+	import plugin from '@/common/plugin.js';
+	// #endif
 
 	import {
 		mapGetters
@@ -153,6 +156,19 @@
 				this.query.page = 1;
 				this.loading = true;
 				this.getGoods();
+			},
+			listTap(item) {
+				console.log(item);
+				var itemId = item.data.goods_id;
+				// #ifdef APP-PLUS
+				console.log(itemId);
+				plugin.alibcsdk.openDetail({
+					'itemId': itemId
+				}, (ret) => {
+					console.log(ret);
+				});
+
+				//#endif
 			}
 		}
 	}
@@ -172,12 +188,12 @@
 	// 		padding-top: var(--status-bar-height);
 	// 	}
 	// }
-	.bg-gradual-red-white{
-		background-image: linear-gradient( #f43f3b, #ec008c,#FFF);
+	.bg-gradual-red-white {
+		background-image: linear-gradient(#f43f3b, #ec008c, #FFF);
 	}
-	.banner_one{
+
+	.banner_one {
 		width: 100%;
 		height: 208rpx;
 	}
-
 </style>
