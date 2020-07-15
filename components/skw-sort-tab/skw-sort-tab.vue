@@ -61,7 +61,7 @@
 			},
 			scrollTop: {
 				type: Number,
-				default: 233
+				default: 436
 			}
 		},
 		methods: {
@@ -71,7 +71,7 @@
 					item.value = item.value == 'ASC' ? 'DESC' : 'ASC';
 				}
 				uni.pageScrollTo({
-					scrollTop: this.scrollTop,
+					scrollTop: uni.upx2px(this.scrollTop),
 					duration: 200
 				});
 				this.tabCur = index;

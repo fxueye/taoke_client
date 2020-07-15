@@ -68,7 +68,7 @@
 		watch: {
 			index() {
 				this.sindex = this.index;
-				this.scrollLeft = (this.index - 1) * 60
+				this.scrollLeft = (this.index - 1) * uni.upx2px(120);
 			}
 		},
 		methods: {

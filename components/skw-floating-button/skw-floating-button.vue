@@ -1,6 +1,10 @@
 <template>
 	<view v-if="visible" @click="onClick" class="bottom-right-box">
-		<button class="cu-btn cuIcon-top bg-red"></button>
+		<view class="fab-btn bg-red">
+			<view>
+				<text class="cuIcon-top"></text>
+			</view>	
+		</view>
 	</view>
 </template>
 
@@ -29,19 +33,18 @@
 <style lang="scss" scoped>
 	.bottom-right-box {
 		position: fixed;
-		z-index: 999999;
-		bottom: 181.81rpx;
-		right: 27.27rpx;
-
-		.cu-btn {
-			margin: auto;
-			width: 81.81rpx;
-			height: 81.81rpx;
-			font-weight: 800;
+		z-index: 9999;
+		bottom: 181rpx;
+		right: 27rpx;
+		opacity: .7;
+		.fab-btn {
+			width: 82rpx;
+			height: 82rpx;
 			border-radius: 50%;
-			font-size: 36.36rpx;
-			border: 9.09rpx solid #fff;
-			box-shadow: 0 0 14.54rpx 7.27rpx #d0d0d0;
+			font-size: 40rpx;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 	}
 </style>

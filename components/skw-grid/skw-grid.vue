@@ -44,7 +44,11 @@
 		methods: {
 			onClick() {
 				this.$emit('click');
+			},
+			moreTap(){
+				this.$emit('more');
 			}
+			
 		}
 	}
 </script>
