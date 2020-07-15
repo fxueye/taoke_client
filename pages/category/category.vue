@@ -84,7 +84,7 @@
 			tabSelect(e) {
 				this.tabCur = e.currentTarget.dataset.id;
 				this.mainCur = e.currentTarget.dataset.id;
-				this.verticalNavTop = (e.currentTarget.dataset.id - 1) * 50
+				this.verticalNavTop = (e.currentTarget.dataset.id - 1) * uni.upx2px(100);
 			},
 			verticalMain(e) {
 				// #ifdef MP-ALIPAY
@@ -105,10 +105,10 @@
 					}
 					this.load = false
 				}
-				let scrollTop = e.detail.scrollTop + 10;
+				let scrollTop = e.detail.scrollTop + uni.upx2px(10);;
 				for (let i = 0; i < this.cate.length; i++) {
 					if (scrollTop > this.cate[i].top && scrollTop < this.cate[i].bottom) {
-						this.verticalNavTop = (this.cate[i].id - 1) * 50
+						this.verticalNavTop = (this.cate[i].id - 1) * uni.upx2px(100);
 						this.tabCur = this.cate[i].id
 						return false
 					}
@@ -123,7 +123,7 @@
 		height: 100rpx;
 	}
 	.vertical-nav.nav {
-		width: 200upx;
+		width: 200rpx;
 		color: #666666;
 		height: calc(100vh - (var(--status-bar-height) + 101rpx));
 		white-space: initial;
@@ -135,7 +135,8 @@
 		background-color: #FAFAFA;
 		margin: 0;
 		border: none;
-		height: 50px;
+		height: 100rpx;
+		line-height: 100rpx;
 		position: relative;
 	}
 

@@ -1,7 +1,7 @@
 {
 	"name": "Skw-AlibcSDK",
 	"id": "Skw-AlibcSDK",
-	"version": "0.1.0",
+	"version": "0.1.2",
 	"description": "阿里百川SDK",
 	"_dp_type": "nativeplugin",
 	"_dp_nativeplugin": {
@@ -12,8 +12,6 @@
 				"class": "com.zhaobaoge.skw.uniplugin.SkwAlibcSDK"
 			}],
 			"integrateType": "aar",
-			"hooksClass": "",
-			"dependencies": [],
 			"compileOptions": {
 				"sourceCompatibility": "1.8",
 				"targetCompatibility": "1.8"
@@ -23,12 +21,36 @@
 				"arm64-v8a",
 				"x86"
 			],
-			"minSdkVersion": "19",
-			"parameters": {
-
-			},
-			"permissions": []
+			"minSdkVersion": "19"
+		},
+		"ios": {
+			"plugins": [
+				{
+					"type": "module",
+					"name": "Skw-AlibcSDK",
+					"class": "SkwAlibcModule" 
+				}
+			],
+			"integrateType": "framework",
+			"hooksClass": "SkwAlibcPluginProxy",
+			"plists": {},
+			"resources": [
+				"mtopsdk_configuration.plist",
+				"NBResource.bundle"
+			],
+			"validArchitectures": [    
+			    "arm64",
+				"armv7"
+			],
+			"frameworks": [
+				"libz.tbd",
+				"libsqlite3.tbd",
+				"CoreTelephony.framework",
+				"CoreMotion.framework"
+			],
+			"deploymentTarget": "9.0"
 		}
+			
 	}
 }
 

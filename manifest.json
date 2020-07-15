@@ -59,7 +59,7 @@
                 "__plugin_info__" : {
                     "name" : "Skw-AlibcSDK",
                     "description" : "阿里百川SDK",
-                    "platforms" : "Android",
+                    "platforms" : "Android,iOS",
                     "url" : "",
                     "android_package_name" : "",
                     "ios_bundle_id" : "",

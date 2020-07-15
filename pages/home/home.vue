@@ -94,7 +94,7 @@
 				loadStatus: 'more',
 				inputBottom: 0,
 				navIndex: 0,
-				loading: false,
+				loading: true,
 				subCate: [],
 			};
 		},

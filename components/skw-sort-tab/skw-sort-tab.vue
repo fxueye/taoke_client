@@ -104,7 +104,7 @@
 	}
 
 	.tab-item {
-		height: 45px;
+		height: 100%;
 	}
 
 	.fold {
