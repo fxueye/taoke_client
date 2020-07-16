@@ -19,10 +19,8 @@
 
 		<skw-goods :data="goods.items" :loadStatus="loadStatus" @listTap="listTap"></skw-goods>
 
-		<view class="cu-load load-modal" v-if="loading">
-			<view class="cuIcon-emojifill text-orange"></view>
-			<view class="gray-text">加载中...</view>
-		</view>
+		<skw-loading :show="loading"></skw-loading>
+
 	</view>
 </template>
 
@@ -33,6 +31,7 @@
 	import skwGrid from '@/components/skw-grid/skw-grid'
 	import skwGoods from '@/components/skw-goods/skw-goods'
 	import skwSortTab from '@/components/skw-sort-tab/skw-sort-tab'
+	import skwLoading from '@/components/skw-loading/skw-loading'
 	// #ifdef APP-PLUS
 	import plugin from '@/common/plugin.js';
 	// #endif
