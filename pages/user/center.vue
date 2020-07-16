@@ -39,7 +39,7 @@
 
 				<!--用户数据-->
 				<view class="app-user-info-num-box">
-					<view class="cu-list grid col-4 no-border">
+					<view class="cu-list grid col-2 no-border">
 						<view class="cu-item">
 							<view class="text-xl" v-if="!login">-</view>
 							<view class="text-xl" v-else>0</view>
@@ -49,16 +49,6 @@
 							<view class="text-xl" v-if="!login">-</view>
 							<view class="text-xl" v-else>4</view>
 							<text class="text-sm">足迹</text>
-						</view>
-						<view class="cu-item">
-							<view class="text-xl" v-if="!login">-</view>
-							<view class="text-xl" v-else>0</view>
-							<text class="text-sm">红包</text>
-						</view>
-						<view class="cu-item">
-							<view class="text-xl" v-if="!login">-</view>
-							<view class="text-xl" v-else>0</view>
-							<text class="text-sm">账单</text>
 						</view>
 					</view>
 				</view>
@@ -76,22 +66,8 @@
 			<!--用户数据-->
 			<view class="padding-xs bg-white app-user-info-order-box">
 				<view class="text-black text-lg text-bold padding-sm">我的交易</view>
-				<view class="cu-list grid col-4 no-border">
+				<view class="cu-list grid col-2 no-border">
 					<view class="cu-item">
-						<view class="text-xxl text-red" v-if="login">
-							<text class="cuIcon-presentfill"></text>
-						</view>
-						<view class="text-xxl text-black" v-else>0</view>
-						<text class="text-sm">我发布的</text>
-					</view>
-					<view class="cu-item">
-						<view class="text-xxl text-red" v-if="login">
-							<text class="cuIcon-sponsorfill"></text>
-						</view>
-						<view class="text-xxl text-black" v-else>1</view>
-						<text class="text-sm">我卖出的</text>
-					</view>
-					<view class="cu-item" >
 						<view class="text-xxl text-red" v-if="login">
 							<text class="cuIcon-cartfill"></text>
 						</view>
@@ -114,15 +90,15 @@
 				<view class="padding-sm tools-view">
 					<view class="text-black text-bold text-lg tools-title">推荐工具</view>
 					<view class="text-gray text-sm tools-right">
-						<text>更多</text>
-						<text class="cuIcon-right" />
+						<!-- <text>更多</text> -->
+						<!-- <text class="cuIcon-right" /> -->
 					</view>
 				</view>
 
 				<view class="app-tools-list-box">
 					<view class="cu-list grid col-4 no-border">
 						<block v-for="(item,index) in toolsList" :key="index">
-							<view class="cu-item" v-if="index < 12" >
+							<view class="cu-item" v-if="index < 12">
 								<view class="text-black" :class="['cuIcon-' + item.icon]" />
 								<text>{{item.name}}</text>
 							</view>
@@ -185,42 +161,10 @@
 					name: '我的订阅'
 				}, {
 					id: 3,
-					icon: 'friend',
-					name: '我的拼团'
-				}, {
-					id: 4,
-					icon: 'moneybag',
-					name: '借钱'
-				}, {
-					id: 5,
-					icon: 'read',
-					name: '平台规则'
-				}, {
-					id: 6,
-					icon: 'notification',
-					name: '活动报名'
-				}, {
-					id: 7,
-					icon: 'redpacket',
-					name: '领新人红包'
-				}, {
-					id: 8,
-					icon: 'vipcard',
-					name: '办信用卡'
-				}, {
-					id: 9,
-					icon: 'scan',
-					name: '活动扫码'
-				}, {
-					id: 10,
 					icon: 'present',
 					name: '签到送礼'
 				}, {
-					id: 11,
-					icon: 'delete',
-					name: '垃圾分类'
-				}, {
-					id: 12,
+					id: 4,
 					icon: 'settings',
 					name: '设置'
 				}]

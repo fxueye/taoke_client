@@ -120,7 +120,7 @@
 			},
 			//页面被滚动
 			setPageScroll(scrollTop) {
-				console.log(scrollTop);
+				// console.log(scrollTop);
 
 			},
 			//触底了
