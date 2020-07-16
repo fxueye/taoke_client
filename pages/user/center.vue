@@ -264,6 +264,8 @@
 
 
 			.app-user-box {
+				padding-top: 20rpx;
+				padding-bottom: 20rpx;
 				width: 100%;
 
 
