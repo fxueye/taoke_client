@@ -2,7 +2,7 @@
 	<view>
 		<view class="app-header bg-gradual-red">
 			<view class="app-nav bg-gradual-red">
-				<skw-search class="bg-gradual-red"></skw-search>
+				<skw-search class="bg-gradual-red" @messageTap="messageTap"></skw-search>
 			</view>
 		</view>
 		
@@ -85,6 +85,9 @@
 				this.tabCur = e.currentTarget.dataset.id;
 				this.mainCur = e.currentTarget.dataset.id;
 				this.verticalNavTop = (e.currentTarget.dataset.id - 1) * uni.upx2px(100);
+			},
+			messageTap(){
+				this.$bus.$emit("tabTap",2);
 			},
 			verticalMain(e) {
 				// #ifdef MP-ALIPAY

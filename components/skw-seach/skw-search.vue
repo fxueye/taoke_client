@@ -19,7 +19,7 @@
 		},
 		methods:{
 			messageTap(e){
-				
+				this.$emit("messageTap");
 			}
 		}
 	}

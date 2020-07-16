@@ -2,8 +2,8 @@
 	<view>
 		<view class="app-header bg-gradual-red">
 			<view class="app-nav bg-gradual-red">
-				<skw-search class="bg-gradual-red"></skw-search>
-				<skw-nav class="bg-gradual-red" :data='cate' :index="navIndex" @navSelect="navSelect"></skw-nav>
+				<skw-search class="bg-gradual-red" @messageTap="messageTap"></skw-search>
+				<skw-nav class="bg-gradual-red" :data='cate' :index="navIndex" @navSelect="navSelect" @cateTap="cateTap"></skw-nav>
 			</view>
 		</view>
 		<view></view>
@@ -168,7 +168,14 @@
 				});
 
 				//#endif
-			}
+			},
+			cateTap(){
+				console.log(111);
+				this.$bus.$emit('tabTap', 1);
+			},
+			messageTap(){
+				this.$bus.$emit("tabTap",2);
+			},
 		}
 	}
 </script>

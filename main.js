@@ -15,6 +15,7 @@ import {
 } from './common/api'
 Vue.prototype.$store = store
 Vue.prototype.$config = config
+Vue.prototype.$bus = new Vue()
 
 Vue.prototype.init = function() {
 

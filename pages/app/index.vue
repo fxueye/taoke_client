@@ -26,6 +26,12 @@
 
 
 	export default {
+		created() {
+			this.$bus.$on('tabTap',(index)=>{
+				console.log(index);
+				this.tabTap(index);
+			});
+		},
 		components: {
 			skwBar,
 			home,
