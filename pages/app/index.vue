@@ -27,7 +27,7 @@
 
 	export default {
 		created() {
-			this.$bus.$on('tabTap',(index)=>{
+			uni.$on('tabTap',(index)=>{
 				console.log(index);
 				this.tabTap(index);
 			});
@@ -49,11 +49,7 @@
 			}
 		},
 		onLoad() {
-			// #ifdef APP-PLUS
-			plugin.alibcsdk.init(res => {
-				console.log(res);
-			})
-			//#endif
+			
 		},
 		methods: {
 			tabTap(index) {

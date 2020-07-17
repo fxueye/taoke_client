@@ -2,24 +2,24 @@
 	<view class="app-bar-title-box">
 		<view class="cu-bar bg-gradual-red" :class="[fixed?'fixed':'', shadow?'':'no-shadow', bgColor]">
 			<view class="action" @tap="BackPage" v-if="isBack">
-				<text class="cuIcon-back"/>
+				<text class="cuIcon-back" />
 				<text>{{backText}}</text>
 			</view>
 			<view class="action" @tap="leftTap" v-if="!isBack">
-				<slot name="left"/>
+				<slot name="left" />
 			</view>
 			<view class="content" @tap="contentTap">
-				<slot name="content"/>
+				<slot name="content" />
 			</view>
 			<view class="action" @tap="rightTap">
 				<!--小程序端不显示-->
 				<!-- #ifndef MP -->
-				<slot name="right"/>
+				<slot name="right" />
 				<!-- #endif -->
 			</view>
 		</view>
 		<!--占位的-->
-		<view class="app-seat-height" v-if="fixed"/>
+		<view class="app-seat-height" v-if="standing" />
 	</view>
 </template>
 
@@ -42,6 +42,10 @@
 			fixed: {
 				type: Boolean,
 				default: true
+			},
+			standing: {
+				type: Boolean,
+				default: false,
 			},
 			shadow: {
 				type: Boolean,
@@ -70,12 +74,15 @@
 		.cu-bar {
 			padding-top: var(--status-bar-height);
 			min-height: calc(var(--status-bar-height) + 101rpx);
+
 			.content {
 				top: var(--status-bar-height);
+
 				.cu-tag {
-				    position: relative;
-				    top: -2.72rpx;
-				    padding: 0 5.45rpx;
+					position: relative;
+					top: -2.72rpx;
+					padding: 0 5.45rpx;
+					
 					text {
 						position: relative;
 						top: 2rpx;
@@ -83,12 +90,15 @@
 				}
 			}
 		}
+
 		.cu-bar.fixed.no-shadow {
 			box-shadow: inherit;
 		}
+
 		.cu-bar.bg-white {
-		    color: #333333;
+			color: #333333;
 		}
+
 		.app-seat-height {
 			width: 100%;
 			height: calc(var(--status-bar-height) + 101rpx);

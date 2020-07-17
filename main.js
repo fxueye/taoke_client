@@ -15,7 +15,7 @@ import {
 } from './common/api'
 Vue.prototype.$store = store
 Vue.prototype.$config = config
-Vue.prototype.$bus = new Vue()
+// Vue.prototype.$bus = new Vue()
 
 Vue.prototype.init = function() {
 
@@ -42,6 +42,9 @@ Vue.prototype.init = function() {
 			params['imsi'] = plus.device.imsi ? plus.device.imsi : '';
 			params['vendor'] = plus.device.vendor ? plus.device.vendor : '';
 			// params['channel'] = plus.runtime.channel;
+			plugin.alibcsdk.init(res => {
+				console.log(res);
+			})
 			// #endif
 			params['channel'] = config.channel;
 

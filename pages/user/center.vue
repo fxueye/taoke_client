@@ -1,6 +1,6 @@
 <template>
 	<view class="app-center-box">
-		<skw-title-bar :isBack="true" :fixed="true">
+		<skw-title-bar :isBack="true" :fixed="true" :standing="true">
 			<block slot="content">
 				<text>用户中心</text>
 			</block>

@@ -66,7 +66,6 @@
 
 		},
 		onReady() {
-			utils.setBarColor(true);
 			uni.pageScrollTo({
 				scrollTop: 0,
 				duration: 0

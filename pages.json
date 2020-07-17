@@ -3,6 +3,10 @@
 		{
 			"path": "pages/app/index",
 			"style": {}
+		},
+		{
+			"path":"pages/good/details",
+			"style":{}
 		}
 	 
     ],

@@ -32,6 +32,7 @@
 	import skwGoods from '@/components/skw-goods/skw-goods'
 	import skwSortTab from '@/components/skw-sort-tab/skw-sort-tab'
 	import skwLoading from '@/components/skw-loading/skw-loading'
+	import utils from '@/common/utils.js';
 	// #ifdef APP-PLUS
 	import plugin from '@/common/plugin.js';
 	// #endif
@@ -98,7 +99,6 @@
 			};
 		},
 		onReady() {
-			utils.setBarColor(true);
 		},
 		methods: {
 			async getData() {
@@ -158,42 +158,36 @@
 			},
 			listTap(item) {
 				console.log(item);
-				var itemId = item.data.goods_id;
+				var id = item.data.id;
+				var goodsId = item.data.goods_id;
+				
+				uni.navigateTo({
+					url:utils.format('/pages/good/details?id={0}&goodsId={1}',id,goodsId),
+					animationType:'pop-in',
+					animationDuration:600
+				})
+				
 				// #ifdef APP-PLUS
-				console.log(itemId);
-				plugin.alibcsdk.openDetail({
-					'itemId': itemId
-				}, (ret) => {
-					console.log(ret);
-				});
-
+				// console.log(itemId);
+				// plugin.alibcsdk.openDetail({
+				// 	'itemId': itemId
+				// }, (ret) => {
+				// 	console.log(ret);
+				// });
 				//#endif
 			},
 			cateTap(){
-				console.log(111);
-				this.$bus.$emit('tabTap', 1);
+				uni.$emit('tabTap', 1);
 			},
 			messageTap(){
-				this.$bus.$emit("tabTap",2);
+				uni.$emit("tabTap",2);
 			},
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-	// .home-header {
-	// 	height: 164rpx;
-	// 	display: block;
-	// 	position: relative;
 
-	// 	.home-nav {
-	// 		position: fixed;
-	// 		width: 100%;
-	// 		top: 0;
-	// 		z-index: 9999;
-	// 		padding-top: var(--status-bar-height);
-	// 	}
-	// }
 	.bg-gradual-red-white {
 		background-image: linear-gradient(#f43f3b, #ec008c, #FFF);
 	}

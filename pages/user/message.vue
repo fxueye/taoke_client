@@ -1,6 +1,6 @@
 <template>
 	<view class="app-message-box">
-		<skw-title-bar :isBack="true" :fixed="true">
+		<skw-title-bar :isBack="true" :fixed="true" :standing="true">
 			<block slot="content">
 				<text>消息中心</text>
 			</block>
@@ -68,6 +68,7 @@
 		mapGetters
 	} from 'vuex';
 	import skwTitleBar from '@/components/skw-title-bar/skw-title-bar';
+	import utils from '@/common/utils.js';
 
 	export default {
 		name: "message",

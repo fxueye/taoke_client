@@ -19,3 +19,7 @@ export function getGoods(params) {
 export function getBanner(){
 	return http.get('/api/banner')
 }
+
+export function getGoodDetails(params){
+	return http.post('/api/goods/details',params)
+}
