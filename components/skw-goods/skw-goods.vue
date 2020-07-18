@@ -5,7 +5,7 @@
 				<block v-for="(item,index) in data" :key="index" v-if="index % 2 == 0">
 					<view class="bg-white margin-bottom-sm list-radius" @tap="listTap(item,index)">
 						<view class="goods-img">
-							<image :src="item.main_pic" mode="widthFix" lazy-load />
+							<image :src="item.main_pic" mode="widthFix" :lazy-load="true" />
 							<view class="mold-view" v-if="item.activity_type != '1'">
 								<view class="text-right service-view" v-if="item.yunfeixian == '1'">
 									<text class="cu-tag bg-blue radius sm">运费险</text>
@@ -70,7 +70,7 @@
 				<block v-for="(item,index) in data" :key="index" v-if="index % 2 != 0">
 					<view class="bg-white margin-bottom-sm list-radius" @tap="listTap(item,index)">
 						<view class="goods-img">
-							<image  :src="item.main_pic" mode="widthFix" lazy-load />
+							<image  :src="item.main_pic" mode="widthFix" :lazy-load="true" />
 							<view class="mold-view" v-if="item.activity_type != '1'">
 								<view class="text-right service-view" v-if="item.yunfeixian == '1'">
 									<text class="cu-tag bg-blue radius sm">运费险</text>

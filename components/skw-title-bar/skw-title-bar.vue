@@ -1,6 +1,6 @@
 <template>
-	<view class="app-bar-title-box">
-		<view class="cu-bar bg-gradual-red" :class="[fixed?'fixed':'', shadow?'':'no-shadow', bgColor]">
+	<view class="app-bar-title-box" >
+		<view class="cu-bar bg-gradual-red" :class="[fixed?'fixed':'', shadow?'':'no-shadow', bgColor]" :style="{opacity:opacity}">
 			<view class="action" @tap="BackPage" v-if="isBack">
 				<text class="cuIcon-back" />
 				<text>{{backText}}</text>
@@ -17,6 +17,9 @@
 				<slot name="right" />
 				<!-- #endif -->
 			</view>
+		</view>
+		<view class="action back-box" :style="{opacity:(1-opacity)}" @tap="BackPage" v-if="isBack">
+			<text class="cuIcon-back text-white" />
 		</view>
 		<!--占位的-->
 		<view class="app-seat-height" v-if="standing" />
@@ -50,6 +53,10 @@
 			shadow: {
 				type: Boolean,
 				default: false
+			},
+			opacity:{
+				type:Number,
+				default:1,
 			}
 		},
 		methods: {
@@ -71,6 +78,7 @@
 
 <style lang="scss" scoped>
 	.app-bar-title-box {
+		z-index: 999;
 		.cu-bar {
 			padding-top: var(--status-bar-height);
 			min-height: calc(var(--status-bar-height) + 101rpx);
@@ -102,6 +110,21 @@
 		.app-seat-height {
 			width: 100%;
 			height: calc(var(--status-bar-height) + 101rpx);
+		}
+		.back-box{
+			position: fixed;
+			z-index: 99999;
+			top: 20rpx;
+			left: 14rpx;
+			font-size: 36rpx;
+			width: 60rpx;
+			height: 60rpx;
+			background: rgba($color: #000000, $alpha: 0.5);
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			
 		}
 	}
 </style>
