@@ -13,3 +13,6 @@
 .status-bar-height{
 	margin-top: calc(var(--status-bar-height));
 }
+.text-through{
+	text-decoration: line-through;
+}

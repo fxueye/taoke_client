@@ -3,6 +3,7 @@
 		onLaunch: function() {
 			console.log('App Launch')
 			this.init().then().catch()
+			
 		},
 		onShow: function() {
 			console.log('App Show')

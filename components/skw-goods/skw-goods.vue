@@ -115,7 +115,7 @@
 									<view class="basis-xl">
 										<view class="flex flex-wrap align-center">
 											<view class="basis-xs">
-												<image class="cu-avatar sm round img" :src="item.shop_logo" lazy-load mode="widthFix" />
+												<image class="cu-avatar sm round img" :src="item.shop_logo" mode="widthFix" />
 											</view>
 											<view class="basis-xl">
 												<text class="text-sm">{{item.shop_name}}</text>
