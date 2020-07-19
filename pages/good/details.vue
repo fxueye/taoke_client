@@ -49,7 +49,7 @@
 				<view class="goods-poupon bg-gradual-orange flex">
 					<view class="basis-lg flex justify-center align-center flex-direction">
 						<view><text class="text-xxl margin-right-xs">150</text><text>元优惠券</text></view>
-						<view><text class="text-gray ">2020.07.18-2020.07.24</text></view>
+						<view><text>2020.07.18-2020.07.24</text></view>
 					</view>
 					<view class="basis-sm flex justify-center align-center text-xxl "><text>立即领券</text></view>
 				</view>
@@ -158,7 +158,7 @@
 			} else {
 				this.opacity = 1;
 			}
-			console.log(e.scrollTop);
+			// console.log(e.scrollTop);
 		},
 		onReachBottom(e) {
 
