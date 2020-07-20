@@ -26,9 +26,10 @@ const app = {
 			state.goods.page = data.page;
 			if (data.page == 1) {
 				state.goods.items = [];
+				state.goods.dic = {};
 			}
 			state.goods.items.push.apply(state.goods.items, data.goods);
-
+		
 		},
 		set_banner: (state, banner) => {
 			state.banner = banner;
@@ -114,7 +115,6 @@ const app = {
 				return b.type == 1;
 			});
 		}
-
 	}
 }
 export default app

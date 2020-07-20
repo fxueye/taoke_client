@@ -22,54 +22,59 @@
 			<view class="margin-left">
 				<view class="flex align-end padding-top-sm">
 					<text class="text-red text-xs ">券后</text>
-					<text class="text-price text-red text-xxl text-left margin-left-sm">1000</text>
+					<text class="text-price text-red text-xxl text-left margin-left-sm">{{goodsDetails.actual_price}}</text>
 				</view>
 				<view class="flex align-center text-xs margin-top-sm">
 					<text class="text-gray">原价</text>
-					<text class="text-price text-gray text-left margin-left-sm">1000</text>
+					<text class="text-price text-gray text-left margin-left-sm text-through">{{goodsDetails.orginal_price}}</text>
 				</view>
 			</view>
 			<view class="margin-left flex align-center margin-top">
-				<text class="bg-gradual-orange text-sm padding-right-xs padding-left-xs radius">天猫</text>
-				<text class="margin-left-sm text-xl">你好你好你好</text>
+				<text v-if="goodsDetails.shop_type == 1" class="bg-gradual-orange text-sm padding-right-xs padding-left-xs radius">天猫</text>
+				<text v-if="goodsDetails.shop_type == 0" class="bg-gradual-blue text-sm padding-right-xs padding-left-xs radius">淘宝</text>
+				<text class="margin-left-sm text-xl">{{goodsDetails.dtitle}}</text>
 			</view>
 			<view class="margin-left flex justify-between align-center margin-top">
 				<view>
-					<text class="cu-tag bg-blue radius sm">运费险</text>
-					<text class="cu-tag bg-blue radius sm">运费险</text>
+					<text v-if="goodsDetails.yunfeixian == 1" class="cu-tag bg-blue radius sm">运费险</text>
 				</view>
 				<view class="margin-right">
 					<text class="text-gray">已售</text>
-					<text class="text-red">1000</text>
+					<text class="text-red">{{goodsDetails.month_sales | parseNum}}</text>
 					<text class="text-gray">件</text>
 				</view>
 			</view>
 
-			<view class="margin-top">
+			<view class="margin-top" @tap="couponTap">
 				<view class="goods-poupon bg-gradual-orange flex">
 					<view class="basis-lg flex justify-center align-center flex-direction">
-						<view><text class="text-xxl margin-right-xs">150</text><text>元优惠券</text></view>
-						<view><text>2020.07.18-2020.07.24</text></view>
+						<view><text class="text-xxl margin-right-xs">{{goodsDetails.coupon_price}}</text><text>元优惠券</text></view>
+						<view><text>{{goodsDetails.coupon_start_time | dateFormat}}-{{goodsDetails.coupon_end_time | dateFormat}}</text></view>
 					</view>
 					<view class="basis-sm flex justify-center align-center text-xxl "><text>立即领券</text></view>
 				</view>
 			</view>
 			<view class="margin-top margin-right margin-left text-sm text-grey padding-bottom">
-				<text>拍2件第二件减5元！加入购物车后结算不同款！高弹不紧绷面料，上身无缝无痕，想没穿一样舒服！AA级纯棉抗菌裆，远离各种妇科疾病，蜂巢暖宫颗粒，还能舒缓姨妈痛。</text>
+				<text>{{goodsDetails.desc}}</text>
 			</view>
 		</view>
 		<view class="margin-top-sm bg-white padding">
 			<view class="flex align-center">
-				<view class="cu-avatar xl radius" style="background-image: url(https://img.alicdn.com/imgextra//36/7c/TB1pCX.MpXXXXanXXXXSutbFXXX.jpg);"></view>
+				<view class="cu-avatar xl radius" :style="{backgroundImage: 'url('+goodsDetails.shop_logo+')'}"></view>
 				<view class="margin-left">
-					<view><text class="text-xl">派睿斯旗舰店</text></view>
-					<view class="margin-top-sm"><text class="bg-gradual-orange text-sm padding-right-xs padding-left-xs radius">天猫</text><text class="margin-left">在售有优惠商品</text><text class="text-red">25</text><text>件</text></view>
+					<view><text class="text-xl">{{goodsDetails.shop_name}}</text></view>
+					<view class="margin-top-sm">
+						<!-- <text class="bg-gradual-orange text-sm padding-right-xs padding-left-xs radius">天猫</text> -->
+						<!-- <text class="margin-left">在售有优惠商品</text> -->
+						<!-- <text class="text-red">25</text> -->
+						<!-- <text>件</text> -->
+					</view>
 				</view>
 			</view>
 			<view class="flex justify-between margin-top">
-				<text>宝贝描述：4.8</text>
-				<text>卖家服务：4.8</text>
-				<text>物流服务：4.8</text>
+				<text>宝贝描述：{{goodsDetails.dsr_score}}</text>
+				<text>卖家服务：{{goodsDetails.service_score}}</text>
+				<text>物流服务：{{goodsDetails.ship_score}}</text>
 			</view>
 		</view>
 
@@ -104,11 +109,31 @@
 				收藏
 			</view>
 			<view class="btn-group">
-				<button class="cu-btn bg-orange round shadow-blur">口令购买</button>
-				<button class="cu-btn bg-red round shadow-blur">领券购买</button>
+				<button class="cu-btn bg-orange round shadow-blur" @tap="showtpwd">口令购买</button>
+				<button class="cu-btn bg-red round shadow-blur" @tap="couponTap">领券购买</button>
 			</view>
 		</view>
 
+		<view class="cu-modal" :class="tpwdDialog ? 'show':''">
+			<view class="cu-dialog">
+				<view class="bg-white">
+					<view class="cu-bar justify-end text-black">
+						<view class="content"></view>
+						<view class="action" @tap="hidetpwd">
+							<text class="cuIcon-close"></text>
+						</view>
+					</view>
+				</view>
+				<view class="padding-xl">
+					<text>
+						{{this.coupon.tpwd}}
+					</text>
+				</view>
+				<view class="cu-bar bg-white">
+					<view class="action margin-0 flex-sub  solid-left" @tap="hidetpwd">复制口令</view>
+				</view>
+			</view>
+		</view>
 	</view>
 
 </template>
@@ -120,8 +145,15 @@
 		getGoodDetails
 	} from '@/common/api.js';
 
+	// #ifdef APP-PLUS
+	import plugin from '@/common/plugin.js';
+	// #endif
+
 	export default {
 		name: "good-details",
+		computed: {
+
+		},
 		components: {
 			skwTitleBar
 		},
@@ -133,11 +165,14 @@
 				title: "商品详情",
 				id: 0,
 				goodsId: 0,
-				imgs: {},
+				imgs: [],
 				detailPics: {},
+				goodsDetails: {},
+				coupon: {},
 				scrollY: 0,
 				showFloatingButton: false,
-				opacity: 0
+				opacity: 0,
+				tpwdDialog: false
 			}
 		},
 		onLoad: function(option) {
@@ -167,6 +202,20 @@
 		onReady() {
 
 		},
+		filters: {
+			parseNum: function(value) {
+				return utils.paseNum(value);
+			},
+			dateFormat: function(str) {
+				if (str) {
+					let d = utils.string2Date(str);
+					return utils.dateFormat("Y.m.d", d);
+				} else {
+					return "00-00:00";
+				}
+
+			}
+		},
 		methods: {
 			getData() {
 				getGoodDetails({
@@ -175,6 +224,8 @@
 				}).then((res) => {
 					console.log(res);
 					if (res['code'] == "20000") {
+						this.coupon = res.data.coupon;
+						this.goodsDetails = res.data.goods_details;
 						this.imgs = res.data.goods_details.imgs.split(',');
 						this.detailPics = JSON.parse(res.data.goods_details.detail_pics);
 						console.log(this.detailPics);
@@ -189,6 +240,24 @@
 					duration: 200
 				});
 			},
+			couponTap() {
+				//#ifdef APP-PLUS
+				plugin.alibcsdk.openByUrl({
+					'url': this.goodsDetails.coupon_link
+				}, (ret) => {
+					console.log(ret);
+				});
+				//#endif
+				// #ifdef H5
+				location.href = this.coupon.coupon_click_url;
+				//#endif
+			},
+			hidetpwd() {
+				this.tpwdDialog = false
+			},
+			showtpwd() {
+				this.tpwdDialog = true;
+			}
 		}
 
 
@@ -225,6 +294,7 @@
 
 	.goods-info-box {
 		width: 100%;
+
 		.goods-poupon {
 			margin: 20rpx 28rpx 20rpx 28rpx;
 			height: 140rpx;

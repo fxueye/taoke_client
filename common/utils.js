@@ -44,14 +44,14 @@ class utils {
 
 	static string2Date(dateString) {
 		dateString.replace(/-/g, "/");
-		return Date.parse(dateString);
+		return new Date(Date.parse(dateString));
 	}
 
 	static timestamp2Date(timestamp) {
 		return new Date(timestamp * 1000);
 	}
 
-	static timestampFormat(timestamp, fmt) {
+	static timestampFormat(fmt,timestamp) {
 		let date = utils.timestamp2Date(timestamp);
 		return utils.dateFormat(fmt, date);
 	}
