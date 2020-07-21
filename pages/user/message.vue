@@ -14,7 +14,7 @@
 		<view class="app-cart-view-box">
 			<view class="text-gray text-center">3月30日 15:30</view>
 			<!--内容-->
-			<view class="bg-white margin-top radius card-view" @tap="tapCard">
+			<view class="bg-white margin-top radius card-view">
 				<!-- <view class="cu-avatar head-img" :style="[{backgroundImage:'url('+ bgImg +')'}]"/> -->
 				<view class="app-content-view">
 					<view class="text-black text-cut">全网首发iPhone11系列低至4349</view>

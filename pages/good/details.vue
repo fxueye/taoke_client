@@ -95,7 +95,7 @@
 		</view>
 
 		<skw-floating-button :visible="showFloatingButton" @click="goTop"></skw-floating-button>
-
+		<view class="cu-tabbar-height" />
 		<!-- bar -->
 		<view class="cu-bar bg-white tabbar border shop bottom-fixed">
 			<button class="action" open-type="contact">

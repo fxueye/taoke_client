@@ -138,7 +138,8 @@
 				this.inputBottom = 0
 			},
 			sortTab(e) {
-				this.query.order = {}
+				this.query.page = 1;
+				this.query.order = {};
 				this.query.order[e.item.key] = e.item.value;
 				this.getGoods();
 			},
@@ -167,17 +168,8 @@
 				uni.navigateTo({
 					url: utils.format('/pages/good/details?id={0}&goodsId={1}', id, goodsId),
 					animationType: 'pop-in',
-					animationDuration: 600
+					animationDuration: 200
 				})
-
-				// #ifdef APP-PLUS
-				// console.log(itemId);
-				// plugin.alibcsdk.openDetail({
-				// 	'itemId': itemId
-				// }, (ret) => {
-				// 	console.log(ret);
-				// });
-				//#endif
 			},
 			cateTap() {
 				uni.$emit('tabTap', 1);
