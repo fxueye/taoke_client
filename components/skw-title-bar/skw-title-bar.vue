@@ -114,8 +114,8 @@
 		.back-box{
 			position: fixed;
 			z-index: 99999;
-			top: 20rpx;
-			left: 14rpx;
+			top: calc(var(--status-bar-height) + 20rpx);
+			left: 12rpx;
 			font-size: 36rpx;
 			width: 60rpx;
 			height: 60rpx;

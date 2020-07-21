@@ -171,7 +171,6 @@
 			};
 		},
 		onReady() {
-			utils.setBarColor(true);
 		},
 		methods: {
 			async getData() {
