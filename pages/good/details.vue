@@ -62,7 +62,7 @@
 			<view class="flex align-center">
 				<view class="cu-avatar xl radius" :style="{backgroundImage: 'url('+goodsDetails.shop_logo+')'}"></view>
 				<view class="margin-left">
-					<view><text class="text-xl">{{goodsDetails.shop_name}}</text></view>
+					<view><text class="text-xl">{{goodsDetails.shop_name}}</text><text class="margin-left-xl cu-btn round line-red" @tap="goShop">进店逛逛</text></view>
 					<view class="margin-top-sm">
 						<!-- <text class="bg-gradual-orange text-sm padding-right-xs padding-left-xs radius">天猫</text> -->
 						<!-- <text class="margin-left">在售有优惠商品</text> -->
@@ -70,6 +70,7 @@
 						<!-- <text>件</text> -->
 					</view>
 				</view>
+				
 			</view>
 			<view class="flex justify-between margin-top">
 				<text>宝贝描述：{{goodsDetails.dsr_score}}</text>
@@ -102,12 +103,12 @@
 					<!-- <view class="cu-tag badge"></view> -->
 				</view> 客服
 			</button>
-			<view class="action">
+			<button class="action" open-type="contact">
 				<view class="cuIcon-favorfill text-green">
 					<!-- <view class="cu-tag badge">99</view> -->
 				</view>
 				收藏
-			</view>
+			</button>
 			<view class="btn-group">
 				<button class="cu-btn bg-orange round shadow-blur" @tap="showtpwd">口令购买</button>
 				<button class="cu-btn bg-red round shadow-blur" @tap="couponTap">领券购买</button>
@@ -118,7 +119,7 @@
 			<view class="cu-dialog">
 				<view class="bg-white">
 					<view class="cu-bar justify-end text-black">
-						<view class="content"></view>
+						<view class="content">复制口令购买</view>
 						<view class="action" @tap="hidetpwd">
 							<text class="cuIcon-close"></text>
 						</view>
@@ -130,10 +131,11 @@
 					</text>
 				</view>
 				<view class="cu-bar bg-white">
-					<view class="action margin-0 flex-sub  solid-left" @tap="hidetpwd">复制口令</view>
+					<view class="action margin-0 flex-sub  solid-left" @tap="copy">一键复制</view>
 				</view>
 			</view>
 		</view>
+		<skw-loading :show="loading"></skw-loading>
 	</view>
 
 </template>
@@ -141,6 +143,7 @@
 <script>
 	import skwTitleBar from '@/components/skw-title-bar/skw-title-bar';
 	import utils from '@/common/utils.js';
+	import skwLoading from '@/components/skw-loading/skw-loading'
 	import {
 		getGoodDetails
 	} from '@/common/api.js';
@@ -155,7 +158,8 @@
 
 		},
 		components: {
-			skwTitleBar
+			skwTitleBar,
+			skwLoading
 		},
 		created() {
 
@@ -172,7 +176,8 @@
 				scrollY: 0,
 				showFloatingButton: false,
 				opacity: 0,
-				tpwdDialog: false
+				tpwdDialog: false,
+				loading:false
 			}
 		},
 		onLoad: function(option) {
@@ -218,20 +223,22 @@
 		},
 		methods: {
 			getData() {
+				this.loading = true;
 				getGoodDetails({
 					id: this.id,
 					goods_id: this.goodsId
 				}).then((res) => {
-					console.log(res);
 					if (res['code'] == "20000") {
 						this.coupon = res.data.coupon;
 						this.goodsDetails = res.data.goods_details;
 						this.imgs = res.data.goods_details.imgs.split(',');
 						this.detailPics = JSON.parse(res.data.goods_details.detail_pics);
-						console.log(this.detailPics);
+						this.loading = false;
 					}
 				}).catch((e) => {
 					console.log(e)
+					uni.navigateBack();
+					this.loading = false;
 				})
 			},
 			goTop() {
@@ -245,6 +252,7 @@
 				plugin.alibcsdk.openByUrl({
 					'url': this.goodsDetails.coupon_link
 				}, (ret) => {
+					uni.navigateBack();
 					console.log(ret);
 				});
 				//#endif
@@ -257,6 +265,20 @@
 			},
 			showtpwd() {
 				this.tpwdDialog = true;
+			},
+			copy(){
+				utils.setClipboard(this.coupon.tpwd);
+				this.tpwdDialog = false;
+			},
+			goShop(){
+				//#ifdef APP-PLUS
+				plugin.alibcsdk.openByUrl({
+					'url': this.goodsDetails.coupon_link
+				}, (ret) => {
+					uni.navigateBack();
+					console.log(ret);
+				});
+				//#endif
 			}
 		}
 

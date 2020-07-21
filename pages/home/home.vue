@@ -89,7 +89,10 @@
 				query: {
 					cid: 0,
 					page: 1,
-					size: 20
+					size: 20,
+					order: {
+						hot_push: 'DESC'
+					},
 				},
 				loadStatus: 'more',
 				inputBottom: 0,
@@ -98,8 +101,7 @@
 				subCate: [],
 			};
 		},
-		onReady() {
-		},
+		onReady() {},
 		methods: {
 			async getData() {
 				await this.$store.dispatch('app/get_cate');
@@ -136,8 +138,9 @@
 				this.inputBottom = 0
 			},
 			sortTab(e) {
-				console.log(e.item);
-				console.log(e.index);
+				this.query.order = {}
+				this.query.order[e.item.key] = e.item.value;
+				this.getGoods();
 			},
 			moreTap(e) {
 
@@ -160,13 +163,13 @@
 				console.log(item);
 				var id = item.data.id;
 				var goodsId = item.data.goods_id;
-				
+
 				uni.navigateTo({
-					url:utils.format('/pages/good/details?id={0}&goodsId={1}',id,goodsId),
-					animationType:'pop-in',
-					animationDuration:600
+					url: utils.format('/pages/good/details?id={0}&goodsId={1}', id, goodsId),
+					animationType: 'pop-in',
+					animationDuration: 600
 				})
-				
+
 				// #ifdef APP-PLUS
 				// console.log(itemId);
 				// plugin.alibcsdk.openDetail({
@@ -176,18 +179,17 @@
 				// });
 				//#endif
 			},
-			cateTap(){
+			cateTap() {
 				uni.$emit('tabTap', 1);
 			},
-			messageTap(){
-				uni.$emit("tabTap",2);
+			messageTap() {
+				uni.$emit("tabTap", 2);
 			},
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-
 	.bg-gradual-red-white {
 		background-image: linear-gradient(#f43f3b, #ec008c, #FFF);
 	}

@@ -49,7 +49,9 @@
 			}
 		},
 		onLoad() {
-			
+			// #ifdef APP-PLUS
+			plugin.init();
+			// #endif
 		},
 		methods: {
 			tabTap(index) {

@@ -24,8 +24,7 @@
 		name: 'skw-sort-tab',
 		data() {
 			return {
-				tabCur: 3,
-
+				tabCur: 0,
 			}
 		},
 		props: {
@@ -34,7 +33,7 @@
 				default: () => {
 					return [{
 							title: '人气',
-							key: 'coupon_receive_num',
+							key: 'hot_push',
 							value: 'DESC',
 							fold: false,
 						},
@@ -62,6 +61,10 @@
 			scrollTop: {
 				type: Number,
 				default: 436
+			},
+			index:{
+				type:Number,
+				default:0,
 			}
 		},
 		methods: {
