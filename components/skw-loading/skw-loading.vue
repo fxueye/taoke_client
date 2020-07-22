@@ -36,7 +36,7 @@ export default{
 		flex-direction: column;
 		justify-content: center;
 		font-size: 28upx;
-		z-index: 9999;
+		z-index: 1;
 		line-height: 2.4em;
 		.skw-load-bg{
 			position: fixed;

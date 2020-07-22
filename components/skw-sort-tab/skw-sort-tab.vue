@@ -93,7 +93,7 @@
 		position: sticky;
 		padding: 2rpx 0;
 		transition: all .25s;
-		z-index: 9999;
+		z-index: 1;
 		background: #fff;
 
 		/* #ifndef MP */

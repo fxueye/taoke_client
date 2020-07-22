@@ -13,7 +13,7 @@
 		<image class="banner_one radius padding-sm bg-white" v-if="banner_one.length > 0 && navIndex == 0" :src="banner_one[0].img"
 		 lazy-load mode="widthFix" />
 
-		<skw-grid v-if="subCate.length > 0" :showNum="9" :data="subCate" @moreTap="moreTap"></skw-grid>
+		<skw-grid v-if="subCate.length > 0" :showNum="9" :data="subCate" @itemTap="itemTap" @moreTap="moreTap"></skw-grid>
 
 		<skw-sort-tab v-show="navIndex != 0" @sortTab="sortTab"></skw-sort-tab>
 
@@ -178,6 +178,12 @@
 			messageTap() {
 				uni.$emit("tabTap", 2);
 			},
+			itemTap(item){
+				// console.log(item);
+				this.query.page = 1;
+				this.query.subcid = item.id;
+				this.getGoods();
+			}
 		}
 	}
 </script>

@@ -113,7 +113,7 @@
 		}
 		.back-box{
 			position: fixed;
-			z-index: 99999;
+			z-index: 1;
 			top: calc(var(--status-bar-height) + 20rpx);
 			left: 12rpx;
 			font-size: 36rpx;

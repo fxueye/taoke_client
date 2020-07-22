@@ -71,7 +71,7 @@
 <style>
 	.bottom-fixed {
 		position: fixed;
-		z-index: 999999;
+		z-index: 99;
 		width: 100%;
 		bottom: 0;
 		left: 0;
