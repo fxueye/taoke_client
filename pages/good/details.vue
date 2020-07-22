@@ -9,7 +9,7 @@
 				<text class="cuIcon-more white" />
 			</block>
 		</skw-title-bar>
-		<!-- <view class="status-bar-height"></view> -->
+		<view class="status-bar-height"></view>
 		<view class="goods-images">
 			<swiper class="screen-swiper" circular autoplay>
 				<swiper-item v-for="(img,index) in imgs" :key="index">
