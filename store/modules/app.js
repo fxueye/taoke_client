@@ -26,7 +26,6 @@ const app = {
 			state.goods.page = data.page;
 			if (data.page == 1) {
 				state.goods.items = [];
-				state.goods.dic = {};
 			}
 			state.goods.items.push.apply(state.goods.items, data.goods);
 		
@@ -71,8 +70,13 @@ const app = {
 			return new Promise((resolve, reject) => {
 				getGoods(options).then(res => {
 					const data = res.data;
-					commit('add_goods', data);
-					resolve();
+					if(res.data.goods.length > 0){
+						commit('add_goods', data);
+						resolve();
+					}else{
+						reject();
+					}
+					
 				}).catch(error => {
 					reject(error)
 				})

@@ -16,10 +16,14 @@ export function getGoods(params) {
 	return http.post('/api/goods', params)
 }
 
-export function getBanner(){
+export function getBanner() {
 	return http.get('/api/banner')
 }
 
-export function getGoodDetails(params){
-	return http.post('/api/goods/details',params)
+export function getGoodDetails(params) {
+	return http.post('/api/goods/details', params)
+}
+
+export function search(params) {
+	return http.post('/api/search', params);
 }

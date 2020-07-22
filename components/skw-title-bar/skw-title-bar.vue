@@ -1,7 +1,7 @@
 <template>
 	<view class="app-bar-title-box" >
 		<view class="cu-bar bg-gradual-red" :class="[fixed?'fixed':'', shadow?'':'no-shadow', bgColor]" :style="{opacity:opacity}">
-			<view class="action" @tap="BackPage" v-if="isBack">
+			<view class="action" @tap="backPage" v-if="isBack">
 				<text class="cuIcon-back" />
 				<text>{{backText}}</text>
 			</view>
@@ -18,7 +18,7 @@
 				<!-- #endif -->
 			</view>
 		</view>
-		<view class="action back-box" :style="{opacity:(1-opacity)}" @tap="BackPage" v-if="isBack">
+		<view class="action back-box" :style="{opacity:(1-opacity)}" @tap="backPage" v-if="isBack">
 			<text class="cuIcon-back text-white" />
 		</view>
 		<!--占位的-->
@@ -60,7 +60,7 @@
 			}
 		},
 		methods: {
-			BackPage() {
+			backPage() {
 				uni.navigateBack();
 			},
 			leftTap() {
@@ -78,7 +78,7 @@
 
 <style lang="scss" scoped>
 	.app-bar-title-box {
-		z-index: 999;
+		z-index: 1;
 		.cu-bar {
 			padding-top: var(--status-bar-height);
 			min-height: calc(var(--status-bar-height) + 101rpx);

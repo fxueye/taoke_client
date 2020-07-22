@@ -9,6 +9,10 @@
 			"style":{}
 		}
 	 
+        ,{
+            "path" : "pages/search/search",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"mp-alipay": {

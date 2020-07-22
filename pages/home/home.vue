@@ -2,7 +2,7 @@
 	<view>
 		<view class="app-header bg-gradual-red">
 			<view class="app-nav bg-gradual-red">
-				<skw-search class="bg-gradual-red" @messageTap="messageTap"></skw-search>
+				<skw-search class="bg-gradual-red" @focus="search" @messageTap="messageTap"></skw-search>
 				<skw-nav class="bg-gradual-red" :data='cate' :index="navIndex" @navSelect="navSelect" @cateTap="cateTap"></skw-nav>
 			</view>
 		</view>
@@ -87,7 +87,7 @@
 		data() {
 			return {
 				query: {
-					subcid:0,
+					subcid: 0,
 					cid: 0,
 					page: 1,
 					size: 20,
@@ -178,11 +178,18 @@
 			messageTap() {
 				uni.$emit("tabTap", 2);
 			},
-			itemTap(item){
+			itemTap(item) {
 				// console.log(item);
 				this.query.page = 1;
 				this.query.subcid = item.id;
 				this.getGoods();
+			},
+			search(){
+				uni.navigateTo({
+					url:'/pages/search/search',
+					animationType: 'pop-in',
+					animationDuration: 200
+				})
 			}
 		}
 	}
