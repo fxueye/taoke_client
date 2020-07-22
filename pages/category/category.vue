@@ -27,10 +27,10 @@
 						</view>
 
 						<!--图标导航-->
-						<view class="app-grid-icon-box">
+						<view class="app-grid-icon-box" >
 							<view class="cu-list grid col-3 no-border">
 								<block v-for="(items,indexs) in item.sub_cate" :key="indexs">
-									<view class="cu-item">
+									<view class="cu-item" @tap="subClick(items)">
 										<view class="grid-icon">
 											<image class="icon" :src="items.icon" lazy-load mode="widthFix" />
 										</view>
@@ -86,7 +86,7 @@
 				this.verticalNavTop = (e.currentTarget.dataset.id - 1) * uni.upx2px(100);
 			},
 			messageTap(){
-				this.$bus.$emit("tabTap",2);
+				uni.$emit("tabTap",2);
 			},
 			verticalMain(e) {
 				// #ifdef MP-ALIPAY
@@ -115,6 +115,9 @@
 						return false
 					}
 				}
+			},
+			subClick(item){
+				console.log(item);
 			}
 		}
 	}

@@ -87,6 +87,7 @@
 		data() {
 			return {
 				query: {
+					subcid:0,
 					cid: 0,
 					page: 1,
 					size: 20,

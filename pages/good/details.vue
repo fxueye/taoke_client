@@ -60,7 +60,7 @@
 		</view>
 		<view class="margin-top-sm bg-white padding">
 			<view class="flex align-center">
-				<view class="cu-avatar xl radius" :style="{backgroundImage: 'url('+goodsDetails.shop_logo+')'}"></view>
+				<view class="cu-avatar xl radius" v-if="goodsDetails.shop_logo" :style="{backgroundImage: 'url('+goodsDetails.shop_logo+')'}"></view>
 				<view class="margin-left">
 					<view><text class="text-xl">{{goodsDetails.shop_name}}</text><text class="margin-left-xl cu-btn round line-red" @tap="goShop">进店逛逛</text></view>
 					<view class="margin-top-sm">
