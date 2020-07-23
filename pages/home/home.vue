@@ -156,6 +156,7 @@
 				this.navIndex = index;
 				var cate = this.cate[index];
 				this.subCate = cate.sub_cate;
+				this.query.subcid = 0;
 				this.query.cid = cate.id;
 				this.query.page = 1;
 				this.loading = true;
@@ -184,9 +185,9 @@
 				this.query.subcid = item.id;
 				this.getGoods();
 			},
-			search(){
+			search() {
 				uni.navigateTo({
-					url:'/pages/search/search',
+					url: '/pages/search/search',
 					animationType: 'pop-in',
 					animationDuration: 200
 				})

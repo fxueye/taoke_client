@@ -99,6 +99,8 @@
 					animationType: 'pop-in',
 					animationDuration: 200
 				})
+			},messageTap() {
+				uni.$emit("tabTap", 2);
 			},
 		}
 	}
