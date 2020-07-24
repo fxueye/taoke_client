@@ -32,9 +32,9 @@
 							<view class="text-gray text-sm flex">
 								<view class="text-cut">{{g.dtitle}}</view>
 							</view>
-							<view class="text-gray text-sm flex">
+							<view class="text-gray text-sm margin-left-sm margin-top-sm flex">
 								<text class="cuIcon-likefill text-red"></text>
-								<view class="text-cut">{{g.score}}</view>
+								<view class="text-cut margin-left-sm">{{g.score}}</view>
 							</view>
 						</view>
 						<view class="action flex">

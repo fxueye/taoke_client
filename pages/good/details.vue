@@ -11,7 +11,11 @@
 		</skw-title-bar>
 		<view class="status-bar-height"></view>
 		<view class="goods-images">
-			<swiper class="screen-swiper" circular autoplay>
+			<swiper class="screen-swiper" circular :autoplay="swiperAutoplay" @change="swiperChange">
+				<swiper-item v-if="goodsDetails.video" @tap="videoTap">
+					<video id="goodVideo" :show-play-btn="false" :show-fullscreen-btn="false" :src="goodsDetails.video" :autoplay="videoAutoplay"
+					 @play="play" @pause="pause" @ended="ended"></video>
+				</swiper-item>
 				<swiper-item v-for="(img,index) in imgs" :key="index">
 					<image :src="img" mode="aspectFill" />
 				</swiper-item>
@@ -62,7 +66,8 @@
 			<view class="flex align-center">
 				<view class="cu-avatar xl radius" v-if="goodsDetails.shop_logo" :style="{backgroundImage: 'url('+goodsDetails.shop_logo+')'}"></view>
 				<view class="margin-left">
-					<view><text class="text-xl">{{goodsDetails.shop_name}}</text><text class="margin-left-xl cu-btn round line-red" @tap="goShop">进店逛逛</text></view>
+					<view><text class="text-xl">{{goodsDetails.shop_name}}</text><text class="margin-left-xl cu-btn round line-red"
+						 @tap="goShop">进店逛逛</text></view>
 					<view class="margin-top-sm">
 						<!-- <text class="bg-gradual-orange text-sm padding-right-xs padding-left-xs radius">天猫</text> -->
 						<!-- <text class="margin-left">在售有优惠商品</text> -->
@@ -70,7 +75,7 @@
 						<!-- <text>件</text> -->
 					</view>
 				</view>
-				
+
 			</view>
 			<view class="flex justify-between margin-top">
 				<text>宝贝描述：{{goodsDetails.dsr_score}}</text>
@@ -177,7 +182,11 @@
 				showFloatingButton: false,
 				opacity: 0,
 				tpwdDialog: false,
-				loading:false
+				loading: false,
+				swiperAutoplay: true,
+				videoContext: {},
+				videoPlay: false,
+				videoAutoplay: false,
 			}
 		},
 		onLoad: function(option) {
@@ -220,6 +229,15 @@
 				}
 
 			}
+		},
+		onReady: function(res) {
+			// #ifndef MP-ALIPAY
+			this.videoContext = uni.createVideoContext('goodVideo')
+			// #endif
+			// #ifdef MP-ALIPAY
+			this.videoAutoplay = true;
+			// #endif
+
 		},
 		methods: {
 			getData() {
@@ -266,11 +284,11 @@
 			showtpwd() {
 				this.tpwdDialog = true;
 			},
-			copy(){
+			copy() {
 				utils.setClipboard(this.coupon.tpwd);
 				this.tpwdDialog = false;
 			},
-			goShop(){
+			goShop() {
 				//#ifdef APP-PLUS
 				plugin.alibcsdk.openByUrl({
 					'url': this.goodsDetails.coupon_link
@@ -279,6 +297,30 @@
 					console.log(ret);
 				});
 				//#endif
+			},
+			ended(e) {
+				this.swiperAutoplay = true;
+			},
+			pause(e) {
+				this.swiperAutoplay = true;
+			},
+			play(e) {
+				this.swiperAutoplay = false;
+			},
+			videoTap(e) {
+				if (!this.videoPlay) {
+					this.videoContext.play();
+					this.videoPlay = true;
+				} else {
+					this.videoContext.pause();
+					this.videoPlay = false;
+				}
+			},
+			swiperChange(e) {
+				if (e.detail.current != 0) {
+					this.videoContext.pause();
+					this.videoPlay = false;
+				}
 			}
 		}
 
@@ -322,5 +364,9 @@
 			height: 140rpx;
 			border-radius: 30upx;
 		}
+	}
+
+	.good-video {
+		z-index: 99;
 	}
 </style>
