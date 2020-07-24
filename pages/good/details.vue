@@ -36,7 +36,7 @@
 			<view class="margin-left flex align-center margin-top">
 				<text v-if="goodsDetails.shop_type == 1" class="bg-gradual-orange text-sm padding-right-xs padding-left-xs radius">天猫</text>
 				<text v-if="goodsDetails.shop_type == 0" class="bg-gradual-blue text-sm padding-right-xs padding-left-xs radius">淘宝</text>
-				<text class="margin-left-sm text-xl">{{goodsDetails.dtitle}}</text>
+				<text class="margin-left-sm text-xl text-cut">{{goodsDetails.dtitle}}</text>
 			</view>
 			<view class="margin-left flex justify-between align-center margin-top">
 				<view>
