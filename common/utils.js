@@ -46,7 +46,7 @@ class utils {
 		// dateString.replace(/-/g, "/");
 		// return new Date(Date.parse(dateString));
 		let arr = dateString.split(/[- :]/);
-		let date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]); 
+		let date = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
 		return date;
 	}
 
@@ -106,6 +106,24 @@ class utils {
 		return result
 		// #endif 
 	}
+	static randomData(arr, m) {
+		var len = arr.length;
+		if (len <= m) {
+			return arr;
+		}
+		var key = [];
+		var value = [];
+		while (value.length < m) {
+			var index = Math.floor(Math.random() * len);
+			if (key.indexOf(index) < 0) {
+				var i = arr[index];
+				key.push(index);
+				value.push(i);
+			}
+		}
+		return value;
+	}
+
 }
 
 export default utils;

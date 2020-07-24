@@ -27,3 +27,11 @@ export function getGoodDetails(params) {
 export function search(params) {
 	return http.post('/api/search', params);
 }
+
+export function words() {
+	return http.get('/api/search/words');
+}
+
+export function ranking(params) {
+	return http.post('/api/goods/ranking', params);
+}

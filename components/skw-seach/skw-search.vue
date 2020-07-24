@@ -7,7 +7,7 @@
 		<view class="search-form round">
 			<text class="cuIcon-search"></text>
 			<input :adjust-position="false" type="text" :disabled="disabled" @input="input" @focus="focus" @confirm="confirm"
-			 @blur="blur" @keyboardheightchange="keyboardheightchange" placeholder="搜索商品名称或者宝贝标题" confirm-type="search"></input>
+			 @blur="blur" @keyboardheightchange="keyboardheightchange" placeholder="搜索商品名称或者宝贝标题" confirm-type="search" :value="word"></input>
 		</view>
 		<view class="action text-white">
 			<text class="cuIcon-message" @tap="messageTap" />
@@ -34,6 +34,10 @@
 				type: String,
 				default: ""
 			},
+			word:{
+				type:String,
+				default:""
+			}
 		},
 		methods: {
 			messageTap(e) {
