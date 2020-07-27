@@ -2,7 +2,7 @@
 	<view>
 		<view class="app-header bg-gradual-red">
 			<view class="app-nav bg-gradual-red">
-				<skw-search class="bg-gradual-red" @focus="search" @messageTap="messageTap"></skw-search>
+				<skw-search class="bg-gradual-red" :disabled="true" @searchTap="search" @messageTap="messageTap"></skw-search>
 				<skw-nav class="bg-gradual-red" :data='cate' :index="navIndex" @navSelect="navSelect" @cateTap="cateTap"></skw-nav>
 			</view>
 		</view>
@@ -181,9 +181,16 @@
 			},
 			itemTap(item) {
 				// console.log(item);
-				this.query.page = 1;
-				this.query.subcid = item.id;
-				this.getGoods();
+				// this.query.page = 1;
+				// this.query.subcid = item.id;
+				// this.getGoods();
+
+				console.log(item);
+				uni.navigateTo({
+					url: utils.format("/pages/good/list?subcid={0}&title={1}", item.id, encodeURIComponent(item.name)),
+					animationType: 'pop-in',
+					animationDuration: 200
+				})
 			},
 			search() {
 				uni.navigateTo({

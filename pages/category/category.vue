@@ -2,7 +2,7 @@
 	<view>
 		<view class="app-header bg-gradual-red">
 			<view class="app-nav bg-gradual-red">
-				<skw-search class="bg-gradual-red" @messageTap="messageTap"></skw-search>
+				<skw-search class="bg-gradual-red" :disabled="true" @searchTap="search" @messageTap="messageTap"></skw-search>
 			</view>
 		</view>
 
@@ -120,6 +120,13 @@
 				console.log(item);
 				uni.navigateTo({
 					url: utils.format("/pages/good/list?subcid={0}&title={1}", item.id, encodeURIComponent(item.name)),
+					animationType: 'pop-in',
+					animationDuration: 200
+				})
+			},
+			search() {
+				uni.navigateTo({
+					url: '/pages/search/search',
 					animationType: 'pop-in',
 					animationDuration: 200
 				})

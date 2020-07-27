@@ -4,7 +4,7 @@
 			<text class="cuIcon-back" @tap="backPage"/>
 			<text>{{backText}}</text>
 		</view>
-		<view class="search-form round">
+		<view class="search-form round" @tap="searchTap">
 			<text class="cuIcon-search"></text>
 			<input :adjust-position="false" type="text" :disabled="disabled" @input="input" @focus="focus" @confirm="confirm"
 			 @blur="blur" @keyboardheightchange="keyboardheightchange" placeholder="搜索商品名称或者宝贝标题" confirm-type="search" :value="word"></input>
@@ -61,6 +61,9 @@
 			backPage() {
 				uni.navigateBack();
 			},
+			searchTap(){
+				this.$emit("searchTap",this);
+			}
 
 
 		}
