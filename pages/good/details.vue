@@ -250,7 +250,9 @@
 						this.coupon = res.data.coupon;
 						this.goodsDetails = res.data.goods_details;
 						this.imgs = res.data.goods_details.imgs.split(',');
-						this.detailPics = JSON.parse(res.data.goods_details.detail_pics);
+						if(res.data.goods_details.detail_pics != ""){
+							this.detailPics = JSON.parse(res.data.goods_details.detail_pics);
+						}
 						this.loading = false;
 					}
 				}).catch((e) => {

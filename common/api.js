@@ -35,3 +35,7 @@ export function words() {
 export function ranking(params) {
 	return http.post('/api/goods/ranking', params);
 }
+
+export function goodsList(params) {
+	return http.post('/api/goods/list', params);
+}

@@ -5,7 +5,7 @@
 				<skw-search class="bg-gradual-red" @messageTap="messageTap"></skw-search>
 			</view>
 		</view>
-		
+
 		<view class="vertical-box status-bar-height">
 			<scroll-view class="vertical-nav nav" scroll-y scroll-with-animation :scroll-top="verticalNavTop">
 				<block v-for="(item,index) in cate" :key="index">
@@ -27,7 +27,7 @@
 						</view>
 
 						<!--图标导航-->
-						<view class="app-grid-icon-box" >
+						<view class="app-grid-icon-box">
 							<view class="cu-list grid col-3 no-border">
 								<block v-for="(items,indexs) in item.sub_cate" :key="indexs">
 									<view class="cu-item" @tap="subClick(items)">
@@ -85,8 +85,8 @@
 				this.mainCur = e.currentTarget.dataset.id;
 				this.verticalNavTop = (e.currentTarget.dataset.id - 1) * uni.upx2px(100);
 			},
-			messageTap(){
-				uni.$emit("tabTap",2);
+			messageTap() {
+				uni.$emit("tabTap", 2);
 			},
 			verticalMain(e) {
 				// #ifdef MP-ALIPAY
@@ -116,17 +116,23 @@
 					}
 				}
 			},
-			subClick(item){
+			subClick(item) {
 				console.log(item);
+				uni.navigateTo({
+					url: utils.format("/pages/good/list?subcid={0}&title={1}", item.id, encodeURIComponent(item.name)),
+					animationType: 'pop-in',
+					animationDuration: 200
+				})
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	.app-header{
+	.app-header {
 		height: 100rpx;
 	}
+
 	.vertical-nav.nav {
 		width: 200rpx;
 		color: #666666;

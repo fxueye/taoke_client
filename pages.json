@@ -13,6 +13,10 @@
             "path" : "pages/search/search",
             "style" : {}
         }
+        ,{
+            "path" : "pages/good/list",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"mp-alipay": {

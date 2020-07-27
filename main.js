@@ -42,10 +42,6 @@ Vue.prototype.init = function() {
 			params['imsi'] = plus.device.imsi ? plus.device.imsi : '';
 			params['vendor'] = plus.device.vendor ? plus.device.vendor : '';
 			// params['channel'] = plus.runtime.channel;
-			console.log("sdk init");
-			plugin.alibcsdk.init(res => {
-				console.log(res);
-			})
 			// #endif
 			params['channel'] = config.channel;
 
